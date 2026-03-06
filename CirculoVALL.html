@@ -10,7 +10,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Círculo VALL">
 <link rel="manifest" href="manifest.json">
-<!-- Ícono para iOS (se genera inline más abajo) -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Círculo VALL">
 <link rel="apple-touch-icon" href="icon-192.png">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -127,40 +129,75 @@ html,body{min-height:100%;background:var(--bg);color:var(--white);font-family:Ge
 #joystick-ring{position:absolute;inset:10px;border-radius:50%;border:1px solid rgba(94,207,130,.18)}
 #joystick-knob{position:absolute;top:50%;left:50%;width:36px;height:36px;border-radius:50%;background:radial-gradient(circle,#fff 0%,#5ecf82 52%,transparent 100%);box-shadow:0 0 13px rgba(94,207,130,.6);transform:translate(-50%,-50%);pointer-events:none}
 
-/* ── MI PRÁCTICA ── */
+/* ── RITUAL DE INICIO ── */
+#screen-inicio{background:var(--bg)}
+#inicio-wrap{width:100%;max-width:400px;display:flex;flex-direction:column;gap:0}
+.inicio-texto{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:clamp(15px,4vw,18px);line-height:1.9;color:var(--whiteM);margin-bottom:28px;opacity:0;animation:ap 1s ease forwards}
+.inicio-texto em{color:var(--white);font-style:normal}
+#inicio-nombre-wrap{opacity:0;animation:ap .8s ease forwards}
+#inicio-nombre{width:100%;background:none;border:none;border-bottom:1px solid var(--border);color:var(--white);font-family:Georgia,serif;font-style:italic;font-size:22px;padding:10px 0;outline:none;margin-bottom:8px}
+#inicio-nombre::placeholder{color:var(--whiteXS)}
+#btn-inicio-nombre{background:none;border:none;font-family:'Courier New',monospace;font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:var(--whiteS);cursor:pointer;padding:8px 0;transition:color .2s}
+#btn-inicio-nombre:hover{color:var(--white)}
+.inicio-pregunta{opacity:0;animation:ap .7s ease forwards;width:100%}
+.inicio-pregunta-txt{font-family:Georgia,serif;font-style:italic;font-size:clamp(16px,4.2vw,20px);color:var(--white);margin-bottom:20px;line-height:1.6}
+.inicio-opt{display:block;width:100%;padding:13px 18px;background:none;border:1px solid var(--border);color:var(--whiteM);font-family:Georgia,serif;font-style:italic;font-size:14px;cursor:pointer;text-align:left;transition:all .2s;margin-bottom:8px}
+.inicio-opt:hover,.inicio-opt:active{background:var(--bgHover);border-color:var(--borderL);color:var(--white);padding-left:24px}
+
+/* ── SALUDO PERSONALIZADO ── */
+#nombre-usuario{color:var(--violetL)}
+
+/* ── PANTALLA CÍRCULO (hub) ── */
+#screen-circulo{background:var(--bg)}
+#circulo-wrap{width:100%;max-width:400px;display:flex;flex-direction:column;align-items:center}
+#circulo-saludo{font-family:'Courier New',monospace;font-size:9px;letter-spacing:.3em;color:var(--whiteS);text-transform:uppercase;margin-bottom:32px;text-align:center}
+#circulo-ld{width:7px;height:7px;border-radius:50%;background:var(--white);animation:glow 2.4s ease infinite,bob 5s ease infinite;box-shadow:0 0 10px rgba(245,240,236,.4),0 0 24px rgba(107,79,200,.55);margin-bottom:32px}
+.circulo-btn{display:block;width:100%;padding:22px 24px;background:var(--bgCard);border:1px solid var(--border);color:var(--white);text-align:left;cursor:pointer;transition:all .25s;margin-bottom:12px;position:relative}
+.circulo-btn:hover,.circulo-btn:active{background:var(--bgHover);border-color:var(--borderL)}
+.circulo-btn-title{display:block;font-family:Georgia,serif;font-style:italic;font-size:20px;margin-bottom:5px}
+.circulo-btn-desc{display:block;font-family:'Courier New',monospace;font-size:9px;letter-spacing:.12em;color:var(--whiteS);text-transform:uppercase}
+.circulo-btn-arrow{position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--whiteXS)}
+.circulo-extras{display:flex;gap:8px;width:100%;margin-top:4px;flex-wrap:wrap}
+.circulo-extra-btn{background:none;border:1px solid var(--whiteXS);color:var(--whiteS);font-family:'Courier New',monospace;font-size:8px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;padding:7px 12px;transition:all .2s;flex:1}
+.circulo-extra-btn:hover{color:var(--whiteM);border-color:var(--border)}
+
+/* ── CARTAS HUB ── */
+#screen-cartas{background:var(--bg)}
+#cartas-wrap{width:100%;max-width:400px}
+#cartas-eyebrow{font-family:'Courier New',monospace;font-size:8px;letter-spacing:.4em;color:var(--whiteS);text-transform:uppercase;margin-bottom:8px}
+#cartas-titulo{font-family:Georgia,serif;font-style:italic;font-size:clamp(28px,7vw,38px);color:var(--white);margin-bottom:8px;line-height:1.1}
+#cartas-sub{font-family:Georgia,serif;font-style:italic;font-size:14px;color:var(--whiteS);margin-bottom:28px;line-height:1.6}
+.cat-btn{display:flex;align-items:center;gap:14px;width:100%;padding:14px 18px;background:none;border:1px solid var(--border);cursor:pointer;text-align:left;transition:all .2s;margin-bottom:8px}
+.cat-btn:hover,.cat-btn:active{background:var(--bgHover);border-color:var(--borderL);padding-left:24px}
+.cat-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.cat-name{font-family:'Courier New',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--white);flex:1}
+.cat-desc{font-family:Georgia,serif;font-style:italic;font-size:11px;color:var(--whiteS)}
+
+/* ── MI PRÁCTICA v2 ── */
 #practica-intro{width:100%;max-width:420px;display:flex;flex-direction:column;align-items:center;gap:0}
 #practica-eyebrow{font-family:'Courier New',monospace;font-size:8px;letter-spacing:.42em;color:rgba(196,175,245,.55);text-transform:uppercase;margin-bottom:14px}
 #practica-titulo{font-family:Georgia,serif;font-style:italic;font-size:clamp(26px,7vw,36px);color:var(--white);margin-bottom:10px;text-align:center;line-height:1.2}
 #practica-sub{font-family:Georgia,serif;font-style:italic;font-size:14px;color:var(--whiteS);line-height:1.7;text-align:center;margin-bottom:32px;max-width:320px}
-.prac-area{display:block;width:100%;padding:16px 20px;background:var(--bgCard);border:1px solid var(--border);color:var(--white);font-family:'Courier New',monospace;font-size:10px;letter-spacing:.08em;cursor:pointer;text-align:left;transition:all .22s;margin-bottom:9px;position:relative}
+.prac-area{display:block;width:100%;padding:16px 20px;background:var(--bgCard);border:1px solid var(--border);color:var(--white);font-family:'Courier New',monospace;font-size:10px;letter-spacing:.08em;cursor:pointer;text-align:left;transition:all .22s;margin-bottom:9px}
 .prac-area:hover,.prac-area:active{background:var(--bgHover);border-color:var(--borderL);padding-left:26px}
 .prac-area-name{display:block;font-size:11px;letter-spacing:.12em;margin-bottom:3px}
 .prac-area-desc{display:block;font-size:9px;color:var(--whiteS);letter-spacing:.06em}
 
-/* chat */
-#practica-chat{width:100%;max-width:480px;display:flex;flex-direction:column;height:100vh;max-height:100vh}
-#chat-header{padding:12px 16px;border-bottom:1px solid var(--whiteXS);display:flex;align-items:center;gap:10;justify-content:space-between;flex-shrink:0;background:var(--bg)}
-#chat-area-label{font-family:'Courier New',monospace;font-size:8px;letter-spacing:.32em;color:var(--violetL);text-transform:uppercase}
-#btn-chat-volver{background:none;border:none;font-family:'Courier New',monospace;font-size:9px;letter-spacing:.2em;color:var(--whiteS);cursor:pointer;text-transform:uppercase;padding:4px 0}
-#chat-msgs{flex:1;overflow-y:auto;padding:20px 16px;display:flex;flex-direction:column;gap:16px}
-.msg{max-width:88%;animation:ap .35s ease both}
-.msg-claude{align-self:flex-start}
-.msg-user{align-self:flex-end}
-.msg-bubble{padding:13px 16px;border-radius:3px;line-height:1.72;font-size:15px}
-.msg-claude .msg-bubble{background:var(--bgCard);border:1px solid var(--border);font-family:Georgia,serif;font-style:italic;color:var(--white)}
-.msg-user .msg-bubble{background:#1e1a38;border:1px solid rgba(155,127,232,.35);font-family:Georgia,serif;color:var(--whiteM)}
-.msg-typing .msg-bubble{color:var(--whiteS)}
-.msg-typing .dot{display:inline-block;animation:dotPulse 1.2s ease infinite}
-.msg-typing .dot:nth-child(2){animation-delay:.2s}
-.msg-typing .dot:nth-child(3){animation-delay:.4s}
-#chat-input-wrap{padding:12px 14px;border-top:1px solid var(--whiteXS);display:flex;gap:9px;align-items:flex-end;flex-shrink:0;background:var(--bg)}
-#chat-input{flex:1;background:var(--bgCard);border:1px solid var(--border);color:var(--white);font-family:Georgia,serif;font-size:15px;font-style:italic;padding:10px 13px;resize:none;outline:none;min-height:44px;max-height:120px;line-height:1.6;border-radius:2px}
-#chat-input::placeholder{color:var(--whiteXS)}
-#btn-send{background:none;border:1px solid var(--borderL);color:var(--violetL);font-family:'Courier New',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;padding:10px 13px;transition:all .2s;white-space:nowrap;flex-shrink:0}
-#btn-send:hover{background:var(--bgHover);color:var(--white)}
-#btn-send:disabled{opacity:.3;cursor:default}
-
-@keyframes dotPulse{0%,80%,100%{opacity:.3}40%{opacity:1}}
+/* ── CARTA PRÁCTICA ── */
+#screen-carta-practica{background:var(--bg)}
+#cp-wrap{width:100%;max-width:400px}
+#cp-eyebrow{font-family:'Courier New',monospace;font-size:8px;letter-spacing:.38em;color:var(--whiteS);text-transform:uppercase;margin-bottom:22px}
+.cp-papel{background:#100e1e;border:1px solid var(--border);padding:26px 22px 22px;position:relative;margin-bottom:22px}
+.cp-area{font-family:'Courier New',monospace;font-size:8px;letter-spacing:.34em;text-transform:uppercase;margin-bottom:16px;opacity:.7}
+.cp-indagacion{font-family:Georgia,serif;font-style:italic;font-size:clamp(16px,4.2vw,19px);line-height:1.82;color:var(--white);margin-bottom:22px;border-bottom:1px solid var(--whiteXS);padding-bottom:18px}
+.cp-ejercicio-label{font-family:'Courier New',monospace;font-size:8px;letter-spacing:.28em;color:var(--whiteS);text-transform:uppercase;margin-bottom:10px}
+.cp-ejercicio{font-family:Georgia,serif;font-size:15px;line-height:1.78;color:var(--whiteM)}
+#cp-nota{width:100%;background:var(--bgCard);border:none;border-bottom:1px solid var(--border);color:var(--white);font-family:Georgia,serif;font-size:15px;font-style:italic;line-height:1.78;padding:11px 4px;resize:none;outline:none;min-height:70px;display:block}
+#cp-nota::placeholder{color:var(--whiteXS)}
+#btn-cp-guardar{background:none;border:1px solid var(--border);color:var(--whiteM);font-family:'Courier New',monospace;font-size:9px;letter-spacing:.24em;text-transform:uppercase;padding:10px 17px;cursor:pointer;width:100%;margin:12px 0 20px;transition:all .28s}
+#btn-cp-guardar:hover,#btn-cp-guardar.saved{background:var(--bgHover);border-color:var(--borderL);color:var(--white)}
+#btn-cp-otra{background:none;border:none;font-family:'Courier New',monospace;font-size:9px;letter-spacing:.26em;text-transform:uppercase;cursor:pointer;color:var(--whiteS);padding:7px 0;display:block;margin:0 auto}
+#btn-cp-otra:hover{color:var(--whiteM)}
 
 /* ── ANIMACIONES ── */
 @keyframes ap{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
@@ -181,12 +218,11 @@ html,body{min-height:100%;background:var(--bg);color:var(--white);font-family:Ge
 <body>
 <div id="grain"></div>
 
-<!-- NAV (oculto en carta del día y bosque) -->
+<!-- NAV simplificado -->
 <nav id="nav" class="hidden">
-  <button class="brand" onclick="irRitual()">◌ CÍRCULO VALL</button>
+  <button class="brand" onclick="irCirculo()">◌ CÍRCULO VALL</button>
   <div class="nav-right">
     <button class="btn-bosque" onclick="irBosque()">◈ bosque</button>
-    <button style="border:1px solid rgba(196,175,245,.25);color:rgba(196,175,245,.7)!important" onclick="irPractica()">✦ práctica</button>
     <button class="btn-proy" onclick="irProyeccion()">⊡ proyectar</button>
     <button id="nav-archivo" onclick="irArchivo()">archivo</button>
   </div>
@@ -199,22 +235,111 @@ html,body{min-height:100%;background:var(--bg);color:var(--white);font-family:Ge
   <div id="cdd-fecha"></div>
   <div id="cdd-label"></div>
   <div id="cdd-sobre" class="sobre-wrap"></div>
-  <button id="btn-entrar-circulo" onclick="irRitual()">entrar al círculo →</button>
+  <button id="btn-entrar-circulo" onclick="irEntrada()">entrar al círculo →</button>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
-     RITUAL
+     RITUAL DE INICIO (primera vez)
+════════════════════════════════════════════════════════ -->
+<div id="screen-inicio" class="screen">
+  <div id="inicio-wrap">
+    <div class="inicio-texto" style="animation-delay:.3s"><em>París, 1924. Nueva York, 1960. Aquí, ahora.</em></div>
+    <div class="inicio-texto" style="animation-delay:1.6s">Hay un café que no cierra nunca.</div>
+    <div class="inicio-texto" style="animation-delay:2.8s">Adentro, alguien acaba de romper algo.</div>
+    <div class="inicio-texto" style="animation-delay:4.1s"><em>"¡Tzara, Tzara!"</em> — alguien grita desde el fondo. Parece un brindis o insultos al aire, es esa hora donde todo sube, una cierta efervescencia que se mezcla con el sonido de un cascabel.</div>
+    <div class="inicio-texto" style="animation-delay:6.2s">Los rostros parecen empañados por el humo.</div>
+    <div class="inicio-texto" style="animation-delay:7.5s">Una persona en la barra te mira. Tiene un libro de Celan o de Borges:</div>
+    <div id="inicio-nombre-wrap" style="animation-delay:9s">
+      <p style="font-family:Georgia,serif;font-style:italic;font-size:19px;color:var(--white);margin-bottom:16px;margin-top:8px">¿Cómo te llamás?</p>
+      <input id="inicio-nombre" type="text" placeholder="tu nombre…" autocomplete="off"
+        onkeydown="if(event.key==='Enter')confirmarNombre()">
+      <button id="btn-inicio-nombre" onclick="confirmarNombre()">entrar →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PREGUNTAS AVENTURA
+════════════════════════════════════════════════════════ -->
+<div id="screen-aventura" class="screen">
+  <div style="width:100%;max-width:400px" id="aventura-contenido"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     CÍRCULO — hub principal
+════════════════════════════════════════════════════════ -->
+<div id="screen-circulo" class="screen">
+  <div id="circulo-wrap">
+    <div id="circulo-ld"></div>
+    <div id="circulo-saludo">bienvenido/a, <span id="nombre-usuario"></span></div>
+    <button class="circulo-btn" onclick="irCartas()" style="animation:ap .5s .1s both">
+      <span class="circulo-btn-title">Acciones</span>
+      <span class="circulo-btn-desc">Cartas del círculo · ejercicios · instrucciones</span>
+      <span class="circulo-btn-arrow">→</span>
+    </button>
+    <button class="circulo-btn" onclick="irPractica()" style="animation:ap .5s .22s both">
+      <span class="circulo-btn-title">Mi práctica</span>
+      <span class="circulo-btn-desc">Indagación personal · desbloqueo · registro</span>
+      <span class="circulo-btn-arrow">→</span>
+    </button>
+    <div class="circulo-extras" style="animation:ap .5s .36s both">
+      <button class="circulo-extra-btn" onclick="irBosque()">◈ el bosque</button>
+      <button class="circulo-extra-btn" onclick="irProyeccion()">⊡ proyectar</button>
+      <button class="circulo-extra-btn" onclick="irArchivo()" id="btn-archivo-circulo">archivo</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     CARTAS — hub de categorías
+════════════════════════════════════════════════════════ -->
+<div id="screen-cartas" class="screen screen-top">
+  <div id="cartas-wrap">
+    <div id="cartas-eyebrow">CÍRCULO VALL · acciones</div>
+    <h2 id="cartas-titulo">Acciones</h2>
+    <p id="cartas-sub">Elegí desde dónde querés entrar hoy.</p>
+    <button class="cat-btn" onclick="irPreguntaCarta('fluxus')">
+      <div class="cat-dot" style="background:#c4aff5"></div>
+      <span class="cat-name">Fluxus</span>
+      <span class="cat-desc">Instrucciones, objetos, el azar</span>
+    </button>
+    <button class="cat-btn" onclick="irPreguntaCarta('grotowski')">
+      <div class="cat-dot" style="background:#a8d4f0"></div>
+      <span class="cat-name">Cuerpo</span>
+      <span class="cat-desc">Presencia, impulso, resonadores</span>
+    </button>
+    <button class="cat-btn" onclick="irPreguntaCarta('surreal')">
+      <div class="cat-dot" style="background:#a0f0c8"></div>
+      <span class="cat-name">Imaginar</span>
+      <span class="cat-desc">Surrealismo, asociación, imagen</span>
+    </button>
+    <button class="cat-btn" onclick="irPreguntaCarta('teoria')">
+      <div class="cat-dot" style="background:#f5f0ec"></div>
+      <span class="cat-name">Concepto</span>
+      <span class="cat-desc">Teoría, pensamiento, referentes</span>
+    </button>
+    <button class="cat-btn" onclick="irPreguntaCarta('grupo')">
+      <div class="cat-dot" style="background:#f0c8a0"></div>
+      <span class="cat-name">Colectivo</span>
+      <span class="cat-desc">Ejercicios para el grupo</span>
+    </button>
+    <button class="cat-btn" style="border-style:dashed" onclick="irPreguntaAleatoria()">
+      <div class="cat-dot" style="background:var(--whiteXS)"></div>
+      <span class="cat-name" style="color:var(--whiteS)">El azar decide</span>
+      <span class="cat-desc">Una carta sorpresa</span>
+    </button>
+    <button class="nb" style="margin-top:14px" onclick="irCirculo()">← volver</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     RITUAL (legado, usado internamente)
 ════════════════════════════════════════════════════════ -->
 <div id="screen-ritual" class="screen">
   <div id="ld"></div>
   <div id="ritual-lines"></div>
   <div id="ritual-btns">
-    <button id="btn-entrar" onclick="irPregunta()">entrar al círculo →</button>
-    <div class="ritual-row">
-      <button class="btn-game" onclick="irBosque()">◈ el bosque</button>
-      <button class="btn-game" style="border-color:rgba(196,175,245,.25);color:rgba(196,175,245,.6)" onclick="irPractica()">✦ mi práctica</button>
-      <button class="btn-proy-r" onclick="irProyeccion()">⊡ proyectar</button>
-    </div>
+    <button id="btn-entrar" onclick="irPregunta()">entrar →</button>
   </div>
 </div>
 
@@ -222,7 +347,7 @@ html,body{min-height:100%;background:var(--bg);color:var(--white);font-family:Ge
      PREGUNTA
 ════════════════════════════════════════════════════════ -->
 <div id="screen-pregunta" class="screen screen-top">
-  <div id="ld2" style="width:6px;height:6px;border-radius:50%;background:var(--white);animation:glow 2.4s ease infinite,bob 5s ease infinite;box-shadow:0 0 8px rgba(245,240,236,.35);margin-bottom:40px"></div>
+  <div id="ld2" style="width:6px;height:6px;border-radius:50%;background:var(--white);animation:glow 2.4s ease infinite,bob 5s ease infinite;margin-bottom:40px"></div>
   <div id="pregunta-txt"></div>
   <div id="opciones" style="width:100%;max-width:400px"></div>
   <button id="btn-azar" onclick="elegirAzar()">el azar decide</button>
@@ -248,7 +373,7 @@ html,body{min-height:100%;background:var(--bg);color:var(--white);font-family:Ge
      PROYECCIÓN
 ════════════════════════════════════════════════════════ -->
 <div id="screen-proyeccion" class="screen">
-  <button id="btn-salir-proy" onclick="irPregunta()">salir ←</button>
+  <button id="btn-salir-proy" onclick="irCirculo()">salir ←</button>
   <div id="proy-label">modo proyección</div>
   <div id="proy-sobre" class="sobre-wrap"></div>
   <button id="btn-siguiente" onclick="siguienteCarta()">siguiente carta →</button>
@@ -261,7 +386,7 @@ html,body{min-height:100%;background:var(--bg);color:var(--white);font-family:Ge
   <div id="archivo-sub">archivo del círculo</div>
   <div id="archivo-titulo">Lo que quedó</div>
   <div id="archivo-lista"></div>
-  <button id="btn-volver-archivo" onclick="irPregunta()">volver al círculo →</button>
+  <button id="btn-volver-archivo" onclick="irCirculo()">volver al círculo →</button>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
@@ -272,41 +397,47 @@ html,body{min-height:100%;background:var(--bg);color:var(--white);font-family:Ge
     <div id="practica-eyebrow">VALL · consulta personal</div>
     <h2 id="practica-titulo">Mi práctica</h2>
     <p id="practica-sub">¿Desde dónde llegás hoy?<br>Elegí el área y empezamos.</p>
-    <button class="prac-area" onclick="iniciarChat('escritura')">
+    <button class="prac-area" onclick="iniciarPractica('escritura')">
       <span class="prac-area-name">Escritura y dramaturgia</span>
       <span class="prac-area-desc">Texto, estructura, bloqueo de página en blanco</span>
     </button>
-    <button class="prac-area" onclick="iniciarChat('actuacion')">
+    <button class="prac-area" onclick="iniciarPractica('actuacion')">
       <span class="prac-area-name">Actuación y presencia</span>
       <span class="prac-area-desc">Cuerpo, voz, conexión, técnica en escena</span>
     </button>
-    <button class="prac-area" onclick="iniciarChat('proyecto')">
+    <button class="prac-area" onclick="iniciarPractica('proyecto')">
       <span class="prac-area-name">Mi proyecto artístico</span>
       <span class="prac-area-desc">Concepto, proceso, dirección, próximos pasos</span>
     </button>
-    <button class="prac-area" onclick="iniciarChat('bloqueo')">
+    <button class="prac-area" onclick="iniciarPractica('bloqueo')">
       <span class="prac-area-name">Bloqueo o estancamiento</span>
       <span class="prac-area-desc">No sé por dónde seguir — algo se trabó</span>
     </button>
-    <button class="nb" style="margin-top:8px" onclick="irPregunta()">← volver al círculo</button>
+    <button class="nb" style="margin-top:8px" onclick="irCirculo()">← volver</button>
   </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
-     MI PRÁCTICA — chat
+     MI PRÁCTICA — preguntas diagnósticas
 ════════════════════════════════════════════════════════ -->
-<div id="screen-chat" class="hidden" style="position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;align-items:center">
-  <div id="practica-chat">
-    <div id="chat-header">
-      <span id="chat-area-label">mi práctica</span>
-      <button id="btn-chat-volver" onclick="salirChat()">← áreas</button>
-    </div>
-    <div id="chat-msgs"></div>
-    <div id="chat-input-wrap">
-      <textarea id="chat-input" placeholder="Escribí acá…" rows="1"
-        oninput="autoResize(this)"
-        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();enviarMensaje()}"></textarea>
-      <button id="btn-send" onclick="enviarMensaje()">enviar</button>
+<div id="screen-practica-q" class="screen screen-top">
+  <div style="width:100%;max-width:400px" id="pq-wrap"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     MI PRÁCTICA — carta resultado
+════════════════════════════════════════════════════════ -->
+<div id="screen-carta-practica" class="screen screen-top">
+  <div id="cp-wrap">
+    <div id="cp-eyebrow"></div>
+    <div class="cp-papel" id="cp-papel"></div>
+    <div class="registro-label">tu registro</div>
+    <textarea id="cp-nota" placeholder="Lo que surge, lo que sentís, lo que querés recordar…" rows="3"></textarea>
+    <button id="btn-cp-guardar" onclick="guardarPractica()">guardar en el archivo</button>
+    <div class="sep"></div>
+    <button id="btn-cp-otra" onclick="otraCartaPractica()">otra carta →</button>
+    <div style="text-align:center;margin-top:16px">
+      <button class="nb" onclick="irPractica()">← cambiar área</button>
     </div>
   </div>
 </div>
@@ -427,6 +558,7 @@ const ORO_WORDS = ["oro","días","luz","cuerpo","imaginar","invisible","presente
 const BOSQUE_MSGS = ["Encontraste el oro de tus días.","La luz sos vos.","Moviste lo invisible.","El cuerpo sabe el camino.","Cada partícula, una memoria.","Seguís tu propio rastro."];
 
 // ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 // ESTADO GLOBAL
 // ═══════════════════════════════════════════════════════════
 let archivo = [];
@@ -434,10 +566,12 @@ let tiposActuales = [];
 let cartaActual = null;
 let preguntaActual = null;
 let proyCartaActual = null;
-
 const rnd = arr => arr[Math.floor(Math.random()*arr.length)];
 const rn  = (a,b) => Math.random()*(b-a)+a;
 const randFrom = t => rnd(CARTAS[t]);
+
+function getNombre() { try { return localStorage.getItem('vall_nombre')||''; } catch(e){ return ''; } }
+function setNombre(n) { try { localStorage.setItem('vall_nombre', n); } catch(e){} }
 
 // ═══════════════════════════════════════════════════════════
 // NAVEGACIÓN
@@ -446,19 +580,91 @@ function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   const el = document.getElementById('screen-'+id);
   if (el) el.classList.add('active');
-  // nav
-  const noNav = ['cdd','ritual','bosque','chat'];
-  const nav = document.getElementById('nav');
-  nav.classList.toggle('hidden', noNav.includes(id));
-  // bosque especial
+  const noNav = ['cdd','inicio','aventura','circulo','bosque'];
+  document.getElementById('nav').classList.toggle('hidden', noNav.includes(id));
   document.getElementById('screen-bosque').classList.toggle('hidden', id !== 'bosque');
   actualizarArchivoNav();
   window.scrollTo(0,0);
 }
 
 function actualizarArchivoNav() {
-  const btn = document.getElementById('nav-archivo');
-  btn.textContent = archivo.length > 0 ? `archivo (${archivo.length})` : 'archivo';
+  const b1 = document.getElementById('nav-archivo');
+  if (b1) b1.textContent = archivo.length > 0 ? `archivo (${archivo.length})` : 'archivo';
+  const b2 = document.getElementById('btn-archivo-circulo');
+  if (b2) b2.textContent = archivo.length > 0 ? `archivo (${archivo.length})` : 'archivo';
+}
+
+function irEntrada() {
+  getNombre() ? irCirculo() : showScreen('inicio');
+}
+
+function irCirculo() {
+  document.getElementById('nombre-usuario').textContent = getNombre() || 'artista';
+  showScreen('circulo');
+}
+
+function irCartas() { showScreen('cartas'); }
+function irRitual() { irCirculo(); }
+
+// ═══════════════════════════════════════════════════════════
+// RITUAL DE INICIO
+// ═══════════════════════════════════════════════════════════
+function confirmarNombre() {
+  const input = document.getElementById('inicio-nombre');
+  const nombre = input.value.trim();
+  if (!nombre) { input.focus(); return; }
+  setNombre(nombre);
+  mostrarAventura();
+}
+
+// ═══════════════════════════════════════════════════════════
+// PREGUNTAS AVENTURA
+// ═══════════════════════════════════════════════════════════
+const AVENTURA = [
+  {
+    pregunta: '¿Dónde te sentás?',
+    opciones: [
+      { texto: 'Con los que discuten hasta el amanecer', tipo: ['teoria','surreal'] },
+      { texto: 'Con los que trabajan en silencio',       tipo: ['grotowski','fluxus'] },
+      { texto: 'Con los que acaban de llegar',           tipo: ['fluxus','surreal'] },
+      { texto: 'En otro lugar',                          tipo: ['surreal','grotowski'] },
+    ]
+  },
+  {
+    pregunta: '¿Qué ponés sobre la mesa?',
+    opciones: [
+      { texto: 'Una pregunta que me quema',          tipo: ['teoria','grotowski'] },
+      { texto: 'Un cuerpo que no sabe qué hacer',    tipo: ['grotowski','fluxus'] },
+      { texto: 'Un plato vacío',                     tipo: ['fluxus','surreal'] },
+      { texto: 'Todavía no sé — vine a descubrirlo', tipo: ['surreal','grupo'] },
+    ]
+  }
+];
+
+let aventuraStep = 0;
+let aventuraTipos = [];
+
+function mostrarAventura() {
+  aventuraStep = 0; aventuraTipos = [];
+  showScreen('aventura');
+  renderAventuraStep();
+}
+
+function renderAventuraStep() {
+  const q = AVENTURA[aventuraStep];
+  document.getElementById('aventura-contenido').innerHTML = `
+    <p style="font-family:'Courier New',monospace;font-size:8px;letter-spacing:.38em;color:var(--whiteS);text-transform:uppercase;margin-bottom:22px;animation:ap .5s both">${aventuraStep+1} / ${AVENTURA.length}</p>
+    <p style="font-family:Georgia,serif;font-style:italic;font-size:clamp(18px,5vw,24px);color:var(--white);margin-bottom:28px;line-height:1.5;animation:ap .6s both">${q.pregunta}</p>
+    <div style="display:flex;flex-direction:column;gap:9px;animation:ap .7s .1s both">
+      ${q.opciones.map((op,i)=>`<button class="inicio-opt" style="animation-delay:${i*.06}s" onclick="elegirAventura(${i})">${op.texto}</button>`).join('')}
+    </div>`;
+}
+
+function elegirAventura(idx) {
+  aventuraTipos.push(...AVENTURA[aventuraStep].opciones[idx].tipo);
+  aventuraStep++;
+  if (aventuraStep < AVENTURA.length) { renderAventuraStep(); }
+  else { try { localStorage.setItem('vall_tipos', JSON.stringify(aventuraTipos)); } catch(e){} irCirculo(); }
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -466,149 +672,773 @@ function actualizarArchivoNav() {
 // ═══════════════════════════════════════════════════════════
 function initCartaDelDia() {
   const d = new Date();
-  const seed = d.getFullYear()*10000 + (d.getMonth()+1)*100 + d.getDate();
-  const narrativas = TODAS.filter(c => c.narrativa);
-  const carta = narrativas[seed % narrativas.length];
-  const col = TIPO_META[carta.tipo]?.color || '#c4aff5';
-
-  document.getElementById('cdd-fecha').textContent =
-    d.toLocaleDateString('es-AR',{weekday:'long',day:'numeric',month:'long'});
+  const seed = d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();
+  const narrativas = TODAS.filter(c=>c.narrativa);
+  const carta = narrativas[seed%narrativas.length];
+  const col = TIPO_META[carta.tipo]?.color||'#c4aff5';
+  document.getElementById('cdd-fecha').textContent = d.toLocaleDateString('es-AR',{weekday:'long',day:'numeric',month:'long'});
   document.getElementById('cdd-label').style.color = col+'99';
   document.getElementById('cdd-label').textContent = 'carta del día';
-
-  document.getElementById('cdd-sobre').innerHTML = renderSobreCerrado(carta, 'abrirCDD()');
+  document.getElementById('cdd-sobre').innerHTML = renderSobreCerrado(carta,'abrirCDD()');
   document.getElementById('btn-entrar-circulo').style.display = 'none';
 }
 
 function abrirCDD() {
   const d = new Date();
-  const seed = d.getFullYear()*10000 + (d.getMonth()+1)*100 + d.getDate();
-  const narrativas = TODAS.filter(c => c.narrativa);
-  const carta = narrativas[seed % narrativas.length];
-  document.getElementById('cdd-sobre').innerHTML = renderSobreAbierto(carta);
-  const btn = document.getElementById('btn-entrar-circulo');
-  btn.style.display = 'block';
+  const seed = d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();
+  const narrativas = TODAS.filter(c=>c.narrativa);
+  document.getElementById('cdd-sobre').innerHTML = renderSobreAbierto(narrativas[seed%narrativas.length]);
+  document.getElementById('btn-entrar-circulo').style.display = 'block';
 }
 
 // ═══════════════════════════════════════════════════════════
-// RITUAL
+// CARTAS
 // ═══════════════════════════════════════════════════════════
-function irRitual() {
-  showScreen('ritual');
-  const cont = document.getElementById('ritual-lines');
-  const btns = document.getElementById('ritual-btns');
-  cont.innerHTML = '';
-  btns.style.opacity = '0';
-  btns.style.animation = 'none';
-  RITUAL_LINES.forEach((l, i) => {
-    const p = document.createElement('p');
-    p.className = 'rl';
-    p.style.animationDelay = (i === 0 ? 1.2 : 1.2 + i*1.8) + 's';
-    p.style.color = i === 3 ? '#f5f0ec' : `rgba(245,240,236,${.35+i*.15})`;
-    p.textContent = l;
-    cont.appendChild(p);
-  });
-  setTimeout(() => {
-    btns.style.animation = 'ap .7s .2s both';
-    btns.style.opacity = '';
-  }, 1200 + RITUAL_LINES.length * 1800);
-}
+function irPreguntaCarta(tipo) { tiposActuales=[tipo]; mostrarCarta(randFrom(tipo)); }
+function irPreguntaAleatoria() { const t=rnd(Object.keys(CARTAS)); tiposActuales=[t]; mostrarCarta(randFrom(t)); }
 
-// ═══════════════════════════════════════════════════════════
-// PREGUNTA
-// ═══════════════════════════════════════════════════════════
 function irPregunta() {
   preguntaActual = PREGUNTAS[Math.floor(Math.random()*PREGUNTAS.length)];
   document.getElementById('pregunta-txt').textContent = preguntaActual.texto;
-  const cont = document.getElementById('opciones');
-  cont.innerHTML = '';
-  preguntaActual.opciones.forEach((op, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'opt-btn';
-    btn.style.animationDelay = (i*.07) + 's';
-    btn.style.animation = 'ap .52s ease both';
-    btn.textContent = op;
-    btn.onclick = () => elegir(op);
-    cont.appendChild(btn);
+  const cont = document.getElementById('opciones'); cont.innerHTML='';
+  preguntaActual.opciones.forEach((op,i)=>{
+    const btn=document.createElement('button'); btn.className='opt-btn';
+    btn.style.animationDelay=(i*.07)+'s'; btn.style.animation='ap .52s ease both';
+    btn.textContent=op; btn.onclick=()=>elegir(op); cont.appendChild(btn);
   });
   showScreen('pregunta');
 }
 
-function elegirAzar() {
-  if (!preguntaActual) return;
-  const op = rnd(preguntaActual.opciones);
-  elegir(op);
-}
+function elegirAzar() { if(!preguntaActual)return; elegir(rnd(preguntaActual.opciones)); }
+function elegir(op) { const tipos=MAPA[op]||['fluxus','surreal','grotowski']; tiposActuales=tipos; mostrarCarta(randFrom(rnd(tipos))); }
 
-function elegir(op) {
-  const tipos = MAPA[op] || ['fluxus','surreal','grotowski'];
-  tiposActuales = tipos;
-  const tipo = rnd(tipos);
-  mostrarCarta(randFrom(tipo));
-}
-
-// ═══════════════════════════════════════════════════════════
-// CARTA
-// ═══════════════════════════════════════════════════════════
 function mostrarCarta(carta) {
-  cartaActual = carta;
-  const mc = TIPO_META[carta.tipo];
-  document.getElementById('carta-label').textContent = '— ' + (mc?.label || '');
-  document.getElementById('carta-label').style.color = (mc?.color || '#f5f0ec') + '77';
-  document.getElementById('carta-sobre').innerHTML = renderSobreCerrado(carta, 'abrirCartaActual()');
+  cartaActual=carta;
+  const mc=TIPO_META[carta.tipo];
+  document.getElementById('carta-label').textContent='— '+(mc?.label||'');
+  document.getElementById('carta-label').style.color=(mc?.color||'#f5f0ec')+'77';
+  document.getElementById('carta-sobre').innerHTML=renderSobreCerrado(carta,'abrirCartaActual()');
   document.getElementById('carta-acciones').classList.add('hidden');
-  document.getElementById('nota-txt').value = '';
-  const bg = document.getElementById('btn-guardar');
-  bg.textContent = 'guardar en el archivo';
-  bg.classList.remove('saved');
-  renderTipoBtns();
-  showScreen('carta');
+  document.getElementById('nota-txt').value='';
+  const bg=document.getElementById('btn-guardar'); bg.textContent='guardar en el archivo'; bg.classList.remove('saved');
+  renderTipoBtns(); showScreen('carta');
 }
 
 function abrirCartaActual() {
-  if (!cartaActual) return;
-  document.getElementById('carta-sobre').innerHTML = renderSobreAbierto(cartaActual);
+  if(!cartaActual)return;
+  document.getElementById('carta-sobre').innerHTML=renderSobreAbierto(cartaActual);
   document.getElementById('carta-acciones').classList.remove('hidden');
 }
 
 function renderTipoBtns() {
-  const cont = document.getElementById('tipo-btns');
-  cont.innerHTML = '';
-  const todos = Object.keys(TIPO_META);
-  const primero = tiposActuales.filter(t => todos.includes(t));
-  const resto   = todos.filter(t => !tiposActuales.includes(t));
-  [...primero, ...resto].forEach(t => {
-    const btn = document.createElement('button');
-    btn.className = 'tipo-btn';
-    const col = TIPO_META[t].color;
-    if (tiposActuales.includes(t)) {
-      btn.style.color = col;
-      btn.style.borderColor = col + '2a';
-    }
-    btn.textContent = TIPO_META[t].label;
-    btn.onclick = () => mostrarCarta(randFrom(t));
-    cont.appendChild(btn);
+  const cont=document.getElementById('tipo-btns'); cont.innerHTML='';
+  Object.keys(TIPO_META).forEach(t=>{
+    const btn=document.createElement('button'); btn.className='tipo-btn';
+    const col=TIPO_META[t].color;
+    if(tiposActuales.includes(t)){btn.style.color=col;btn.style.borderColor=col+'2a';}
+    btn.textContent=TIPO_META[t].label; btn.onclick=()=>mostrarCarta(randFrom(t)); cont.appendChild(btn);
   });
 }
 
 function guardar() {
-  if (!cartaActual) return;
-  const nota = document.getElementById('nota-txt').value;
-  archivo.unshift({
-    ...cartaActual,
-    nota,
-    ts: new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'}),
-    id: Math.random(),
-  });
-  const btn = document.getElementById('btn-guardar');
-  btn.textContent = 'guardado ·';
-  btn.classList.add('saved');
+  if(!cartaActual)return;
+  const nota=document.getElementById('nota-txt').value;
+  archivo.unshift({...cartaActual,nota,ts:new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'}),id:Math.random(),origen:'cartas'});
+  const btn=document.getElementById('btn-guardar'); btn.textContent='guardado ·'; btn.classList.add('saved');
   actualizarArchivoNav();
 }
 
 // ═══════════════════════════════════════════════════════════
+// PROYECCIÓN
+// ═══════════════════════════════════════════════════════════
+function irProyeccion() {
+  proyCartaActual=rnd(TODAS);
+  document.getElementById('proy-sobre').innerHTML=renderSobreCerrado(proyCartaActual,'abrirProyCarta()');
+  document.getElementById('btn-siguiente').style.display='none';
+  showScreen('proyeccion');
+}
+function abrirProyCarta() {
+  if(!proyCartaActual)return;
+  document.getElementById('proy-sobre').innerHTML=renderSobreAbierto(proyCartaActual);
+  document.getElementById('btn-siguiente').style.display='block';
+}
+function siguienteCarta() {
+  proyCartaActual=rnd(TODAS);
+  document.getElementById('proy-sobre').innerHTML=renderSobreCerrado(proyCartaActual,'abrirProyCarta()');
+  document.getElementById('btn-siguiente').style.display='none';
+}
+
+// ═══════════════════════════════════════════════════════════
+// ARCHIVO
+// ═══════════════════════════════════════════════════════════
+function irArchivo() {
+  const lista=document.getElementById('archivo-lista'); lista.innerHTML='';
+  if(archivo.length===0){
+    lista.innerHTML=`<div id="archivo-empty" style="text-align:center;padding-top:60px"><p style="font-family:Georgia,serif;font-style:italic;font-size:18px;color:var(--whiteS);line-height:1.72;margin-top:24px">Todavía no guardaste nada.<br>El archivo espera.</p></div>`;
+  } else {
+    archivo.forEach((item,i)=>{
+      const col=TIPO_META[item.tipo]?.color||'#f5f0ec';
+      const div=document.createElement('div'); div.className='archivo-item'; div.style.animationDelay=(i*.05)+'s';
+      const label = item.origen==='practica' ? item.titulo : (TIPO_META[item.tipo]?.label||'');
+      div.innerHTML=`
+        <div class="archivo-row">
+          <span class="archivo-tipo" style="color:${col}">${label}</span>
+          <span class="archivo-ts">${item.ts}</span>
+        </div>
+        <p class="archivo-texto" style="${item.narrativa?'font-style:italic':''}">${item.contenido.slice(0,120)}…</p>
+        ${item.nota?`<div class="archivo-nota">${item.nota}</div>`:''}`;
+      lista.appendChild(div);
+    });
+  }
+  showScreen('archivo');
+}
+
+// ═══════════════════════════════════════════════════════════
+// MI PRÁCTICA — secuencias de 4 pasos encadenados
+// ═══════════════════════════════════════════════════════════
+
+const AREA_LABELS = { escritura:"ESCRITURA · DRAMATURGIA", actuacion:"ACTUACIÓN · PRESENCIA", proyecto:"PROYECTO ARTÍSTICO", bloqueo:"BLOQUEO · ESTANCAMIENTO" };
+const AREA_COL   = { escritura:'#c4aff5', actuacion:'#a8d4f0', proyecto:'#a0f0c8', bloqueo:'#f0c8a0' };
+
+// sig = índice dentro del array de la secuencia al que salta esa opción
+const SECUENCIAS = {
+
+  /* ── ESCRITURA ─────────────────────────────────────────── */
+  escritura: {
+    bloqueado_texto: [
+      /* 0 */ { indagacion:"Hay algo que querés escribir pero no sale. No pensés en el resultado todavía. Pensá en el momento exacto en que te trabás — ¿qué pasa ahí, qué te decís?", ejercicio:"Abrí una hoja en blanco. Escribí cinco minutos sin parar, sin leer, sin corregir nada. Si no sabés qué escribir, escribí 'no sé qué escribir' hasta que aparezca otra cosa. El objetivo no es producir — es moverse.", autor:"Escritura automática, André Breton",
+        transicion:{ pregunta:"¿Qué pasó después de escribir?", opciones:[
+          {texto:"Algo se movió, apareció algo", sig:1},
+          {texto:"Sigo igual de trabado", sig:2},
+          {texto:"Apareció algo que no esperaba", sig:3},
+        ]}},
+      /* 1 */ { indagacion:"Hay movimiento. El texto tiene un inicio aunque sea roto. La pregunta es: ¿cuál es la escena que más te importa que quede, por encima de todo lo demás?", ejercicio:"Escribí esa escena. Solo esa. Sin pensar en lo que viene antes ni después. Que exista aunque no sepas dónde va. Veinte minutos, sin revisar.", autor:"Dramaturgia de fragmentos, Heiner Müller",
+        transicion:{ pregunta:"¿Pudiste escribirla?", opciones:[
+          {texto:"Sí, aunque quedó incompleta", sig:4},
+          {texto:"La empecé pero me fui por las ramas", sig:4},
+          {texto:"No pude, me bloqueé de nuevo", sig:5},
+        ]}},
+      /* 2 */ { indagacion:"El bloqueo está sostenido por algo que no dijiste todavía. No en el texto — en vos. ¿Qué es lo que no querés que aparezca si escribís esto?", ejercicio:"Escribí diez minutos desde el punto de vista del personaje o la voz que más te incomoda del texto. No el protagonista — el que preferirías no escribir. Dejalo hablar.", autor:"Técnica del antagonista",
+        transicion:{ pregunta:"¿Qué apareció?", opciones:[
+          {texto:"Algo que no esperaba", sig:4},
+          {texto:"Resistencia, pero seguí", sig:4},
+          {texto:"No pude arrancar", sig:5},
+        ]}},
+      /* 3 */ { indagacion:"Cuando aparece lo inesperado en la escritura, generalmente es lo más verdadero. No lo analices todavía. ¿Podés describirlo en una oración sin juzgarlo?", ejercicio:"Escribí quince minutos siguiendo eso que apareció, sin preguntarte si tiene sentido en el texto original. Dejalo ir adonde quiera.", autor:"Deriva del proceso, Beckett",
+        transicion:{ pregunta:"¿Pudiste seguirlo?", opciones:[
+          {texto:"Sí, fue interesante", sig:4},
+          {texto:"Me perdí pero escribí", sig:4},
+          {texto:"Se me cortó de nuevo", sig:5},
+        ]}},
+      /* 4 */ { indagacion:"Hiciste trabajo real hoy. Mirá lo que escribiste sin editarlo. No lo juzgues. Buscá una sola frase — la que más te sorprenda o incomode.", ejercicio:"Copiá esa frase al principio de una hoja nueva. Es tu punto de entrada para la próxima sesión. No escribas más hoy. El texto ya existe un poco más que antes.", autor:"Cierre de proceso, Sarah Kane" },
+      /* 5 */ { indagacion:"El bloqueo persistió hoy. Eso también es información — el texto te está diciendo que todavía no encontraste el ángulo de entrada.", ejercicio:"Escribí una sola oración: '¿Qué es lo que todavía no me permito escribir en este texto?' No la respondas. Guardala. Esa pregunta es tu tarea.", autor:"Pregunta generativa" },
+    ],
+    texto_que_no_avanza: [
+      /* 0 */ { indagacion:"El texto no avanza porque algo en él todavía no está claro para vos. No en la trama — en la pregunta. ¿Cuál es la pregunta real que ese texto está intentando hacer?", ejercicio:"Escribí la versión más rota, más fea, más incompleta del texto que tenés. Sin autocorrección. Después leelo en voz alta. Lo que te incomode es lo que no resolviste — eso es exactamente lo que tenés que escribir.", autor:"Ejercicio de dramaturgia, Sarah Kane",
+        transicion:{ pregunta:"¿Qué encontraste al leerlo?", opciones:[
+          {texto:"Encontré lo que faltaba", sig:1},
+          {texto:"Vi que el problema es estructural", sig:2},
+          {texto:"El tono está mal, algo no cierra", sig:3},
+        ]}},
+      /* 1 */ { indagacion:"Ya sabés qué falta. Ahora la pregunta es: ¿por qué no lo escribiste antes? Lo que resistimos escribir suele ser lo más necesario.", ejercicio:"Escribí eso que faltaba. Solo eso. Sin integrarlo todavía al texto. Que exista primero por separado, como un fragmento suelto.", autor:"Dramaturgia de la omisión, Pinter",
+        transicion:{ pregunta:"¿Pudiste escribirlo?", opciones:[
+          {texto:"Sí, y encaja en el texto", sig:4},
+          {texto:"Sí, pero no sé dónde va", sig:4},
+          {texto:"Me bloqueé al intentarlo", sig:5},
+        ]}},
+      /* 2 */ { indagacion:"Si el problema es estructural, olvidate del texto por un momento. Pensá en el movimiento: ¿qué tiene que cambiar en el personaje o la situación de principio a fin? No el argumento — el cambio interno.", ejercicio:"Dibujá o escribí el arco: estado inicial → momento de quiebre → estado final. Tres palabras por lugar alcanza. Después mirá si tu texto sigue ese movimiento o lo ignora.", autor:"Estructura dramática, Aristóteles / Brecht",
+        transicion:{ pregunta:"¿Qué ves en el arco?", opciones:[
+          {texto:"Veo dónde está el problema", sig:4},
+          {texto:"El arco no me convence todavía", sig:4},
+          {texto:"Me di cuenta que el texto es otro", sig:4},
+        ]}},
+      /* 3 */ { indagacion:"El tono es la actitud del texto hacia su propio material. Cuando algo no cierra en el tono, el texto está tratando al material con más o menos distancia de la que necesita.", ejercicio:"Reescribí el párrafo o escena que más te incomoda cambiando solo el tono: si era lírico, hacelo seco. Si era seco, hacelo íntimo. No para quedarte con esa versión — para ver qué le pasa al material.", autor:"Trabajo de tono, Marguerite Duras",
+        transicion:{ pregunta:"¿Qué cambió?", opciones:[
+          {texto:"Algo se abrió con el cambio", sig:4},
+          {texto:"Confirmé que el tono original era mejor", sig:4},
+          {texto:"Apareció una tercera posibilidad", sig:4},
+        ]}},
+      /* 4 */ { indagacion:"Hiciste trabajo de diagnóstico real hoy. El texto ya tiene la respuesta — solo hay que dejarla aparecer.", ejercicio:"Anotá en una línea qué cambió en tu entendimiento del texto hoy. No lo que escribiste — lo que entendiste. Eso es lo que te llevás.", autor:"Cierre reflexivo" },
+      /* 5 */ { indagacion:"El texto resistió hoy. Eso no es fracaso — es que algo en él todavía necesita tiempo.", ejercicio:"Escribí una sola pregunta que el texto te esté haciendo a vos, no al revés. Guardala. Esa pregunta es el trabajo pendiente.", autor:"Pregunta generativa" },
+    ],
+    pagina_en_blanco: [
+      /* 0 */ { indagacion:"La página en blanco no es un problema de ideas — es un problema de permiso. ¿A quién le pedís permiso para escribir lo que querés escribir?", ejercicio:"Escribí una escena de dos personas que no pueden decirse lo que realmente quieren decirse. No importa de qué trata. Que dure una página. El conflicto tiene que estar en lo que no se dice.", autor:"Técnica del subtexto, Chéjov",
+        transicion:{ pregunta:"¿Pudiste escribirla?", opciones:[
+          {texto:"Sí, aunque me costó", sig:1},
+          {texto:"La empecé y algo apareció", sig:1},
+          {texto:"No pude, la página sigue en blanco", sig:2},
+        ]}},
+      /* 1 */ { indagacion:"Ya rompiste la página. Hay material. Leé lo que escribiste y marcá la frase que más te sorprenda — no la mejor, la que menos esperabas.", ejercicio:"Empezá un texto nuevo desde esa frase. No tiene que conectar con lo anterior. Seguila durante quince minutos sin preguntarte adónde va.", autor:"Deriva escritural",
+        transicion:{ pregunta:"¿Qué pasó?", opciones:[
+          {texto:"Encontré una dirección", sig:4},
+          {texto:"Escribí pero no sé qué es todavía", sig:4},
+          {texto:"Me perdí", sig:3},
+        ]}},
+      /* 2 */ { indagacion:"La resistencia a escribir suele ser resistencia a revelar algo. No en el texto — en vos. ¿Qué es lo que más te da miedo que aparezca si empezás?", ejercicio:"Escribí diez minutos en segunda persona — 'vos' — sobre alguien que no puede empezar a hacer algo. No tiene que ser escribir. Puede ser cualquier cosa.", autor:"Distancia escritural, Pessoa",
+        transicion:{ pregunta:"¿Pudiste escribirlo?", opciones:[
+          {texto:"Sí, y algo se movió", sig:4},
+          {texto:"A medias", sig:4},
+          {texto:"No, la resistencia es muy fuerte hoy", sig:3},
+        ]}},
+      /* 3 */ { indagacion:"Algunos días la escritura no es posible y eso también es parte del proceso. ¿El bloqueo es de hoy o lleva más tiempo?", ejercicio:"Hacé una sola cosa: escribí la fecha y una palabra que describa cómo llegaste hoy. Una sola palabra. Eso es suficiente por hoy.", autor:"Registro mínimo, Fluxus",
+        transicion:{ pregunta:"¿Lo hiciste?", opciones:[
+          {texto:"Sí", sig:4},
+          {texto:"Sí, y escribí más de lo que esperaba", sig:4},
+        ]}},
+      /* 4 */ { indagacion:"Hoy existió algo en la página que antes no existía, aunque sea poco. Eso es trabajo.", ejercicio:"Guardá todo lo que escribiste hoy — incluso lo que te parece malo. En una semana vas a ver que había más de lo que creías.", autor:"Confianza en el proceso" },
+    ],
+    estructura_perdida: [
+      /* 0 */ { indagacion:"Tenés material pero no sabés cómo ordenarlo. Antes de pensar en estructura, preguntate: ¿qué es lo que más te importa que quede? ¿Qué podría irse sin que el texto sea otro?", ejercicio:"Escribí en papeles o notas separadas cada escena, momento o fragmento que tenés. Ponelos donde puedas verlos todos. Movelos sin pensar en orden lógico — buscá el orden que se siente verdadero, no el que se entiende.", autor:"Dramaturgia de fragmentos, Heiner Müller",
+        transicion:{ pregunta:"¿Encontraste algún orden posible?", opciones:[
+          {texto:"Apareció una secuencia", sig:1},
+          {texto:"Hay dos o tres opciones posibles", sig:2},
+          {texto:"Sigo sin ver cómo ordenarlo", sig:3},
+        ]}},
+      /* 1 */ { indagacion:"Seguí esa secuencia aunque no la entiendas todavía. La estructura que se siente verdadera casi siempre tiene una lógica que se revela después.", ejercicio:"Escribí las transiciones — los momentos entre fragmentos. No el contenido de cada parte, sino cómo se pasa de una a la otra. ¿Qué une esos momentos?", autor:"Dramaturgia de las transiciones",
+        transicion:{ pregunta:"¿Cómo quedó?", opciones:[
+          {texto:"Las transiciones me aclararon la estructura", sig:4},
+          {texto:"Algunas funcionan, otras no", sig:4},
+          {texto:"Las transiciones mostraron un problema nuevo", sig:4},
+        ]}},
+      /* 2 */ { indagacion:"Cuando hay varias estructuras posibles, la pregunta no es cuál es la correcta — es cuál es la más honesta con el material. ¿Qué quiere ser este texto?", ejercicio:"Elegí la opción que más te incomode de las que tenés. Trabajá con esa durante una hora. No porque sea la mejor — porque la incomodidad suele señalar algo verdadero.", autor:"Trabajo con la resistencia, Grotowski",
+        transicion:{ pregunta:"¿Qué pasó al trabajar con esa opción?", opciones:[
+          {texto:"Confirmé que no era la correcta, pero aprendí", sig:4},
+          {texto:"Resultó ser más interesante de lo que pensaba", sig:4},
+          {texto:"Se abrió una nueva posibilidad", sig:4},
+        ]}},
+      /* 3 */ { indagacion:"A veces el material no tiene estructura porque todavía no tiene suficiente material. El orden aparece cuando hay más para ordenar.", ejercicio:"En lugar de ordenar lo que tenés, escribí la escena o fragmento que siempre postergaste. Sin pensar en dónde va. Que exista primero.", autor:"Completar antes de ordenar",
+        transicion:{ pregunta:"¿Pudiste escribirlo?", opciones:[
+          {texto:"Sí, y cambió cómo veo el conjunto", sig:4},
+          {texto:"Lo escribí, a ver qué pasa", sig:4},
+          {texto:"No pude todavía", sig:4},
+        ]}},
+      /* 4 */ { indagacion:"La estructura no es un problema que se resuelve de una vez — es algo que el texto va encontrando mientras existe.", ejercicio:"Escribí en una oración qué descubriste hoy sobre lo que el texto quiere ser. No sobre cómo ordenarlo — sobre qué es. Eso es tu brújula.", autor:"Cierre de proceso" },
+    ],
+  },
+
+  /* ── ACTUACIÓN ─────────────────────────────────────────── */
+  actuacion: {
+    no_llego: [
+      /* 0 */ { indagacion:"Algo no está llegando en tu actuación. Antes de buscar técnicas, preguntate: ¿estás actuando para que te vean, o estás actuando para hacer algo?", ejercicio:"Elegí una acción física muy concreta: acomodar algo, buscar algo, esperar algo. Hacela durante dos minutos sin texto, sin audiencia. Solo el cuerpo haciendo. Notá qué cambia cuando no hay nadie mirando.", autor:"Acciones físicas, Grotowski",
+        transicion:{ pregunta:"¿Qué notaste?", opciones:[
+          {texto:"El cuerpo se relajó, algo apareció", sig:1},
+          {texto:"Sigo sintiendo que actúo para afuera", sig:2},
+          {texto:"Me di cuenta de dónde está el control", sig:3},
+        ]}},
+      /* 1 */ { indagacion:"Cuando el cuerpo se relaja, la presencia aparece sola. Ahora agregá el texto — pero sin abandonar la acción física. El texto es consecuencia de lo que hacés, no al revés.", ejercicio:"Trabajá la escena con el texto, pero mantené la acción física durante todo el tiempo. Si la acción se interrumpe, el texto también para. Primero el cuerpo, después las palabras.", autor:"Partitura de acciones, Stanislavski",
+        transicion:{ pregunta:"¿Cómo funcionó?", opciones:[
+          {texto:"El texto salió más verdadero", sig:4},
+          {texto:"Hubo momentos que funcionaron", sig:4},
+          {texto:"Me cuesta coordinar los dos", sig:5},
+        ]}},
+      /* 2 */ { indagacion:"Actuar para afuera es un hábito de protección. El cuerpo aprendió a mostrar en lugar de hacer. ¿Qué necesita el personaje que vos no le estás dando?", ejercicio:"Trabajá la escena pensando solo en lo que el personaje necesita conseguir — no en cómo lucís haciéndolo. Si alguien te mira, imaginá que ve el problema del personaje, no tu actuación.", autor:"Objetivo escénico, Stanislavski",
+        transicion:{ pregunta:"¿Pudiste correrte del mostrar?", opciones:[
+          {texto:"En algunos momentos sí", sig:4},
+          {texto:"Me costó pero hubo algo", sig:4},
+          {texto:"No logré salir del control", sig:5},
+        ]}},
+      /* 3 */ { indagacion:"Identificar el control ya es trabajo. El control en escena casi siempre viene del miedo a que algo salga mal. ¿Qué es específicamente lo que no querés que pase?", ejercicio:"Hacé la escena dejando que eso que temés que pase, pase. Intencionalmente. No para sabotearte — para ver qué hay del otro lado del control.", autor:"Via negativa, Grotowski",
+        transicion:{ pregunta:"¿Qué pasó al soltar el control?", opciones:[
+          {texto:"Apareció algo vivo", sig:4},
+          {texto:"Fue incómodo pero interesante", sig:4},
+          {texto:"No pude soltarlo todavía", sig:5},
+        ]}},
+      /* 4 */ { indagacion:"Hiciste trabajo real en el cuerpo hoy. Lo que encontraste está en el cuerpo, no en la cabeza — va a estar disponible en el próximo ensayo.", ejercicio:"Antes de cerrar, hacé la acción física que trabajaste una vez más, muy lento, sin texto. Grabala en el cuerpo. Eso es tuyo.", autor:"Cierre corporal" },
+      /* 5 */ { indagacion:"El control persistió hoy. Eso es información útil — el cuerpo todavía necesita sentir que es seguro no controlar. Eso se construye con tiempo.", ejercicio:"Identificá una sola cosa pequeña que sí podés soltar en la próxima sesión. No todo — una cosa. Ese es tu trabajo concreto.", autor:"Proceso gradual" },
+    ],
+    cuerpo_bloqueado: [
+      /* 0 */ { indagacion:"El cuerpo bloqueado tiene una zona específica donde la energía no pasa. ¿Dónde sentís la tensión cuando estás en escena?", ejercicio:"De pie. Cerrá los ojos. Llevá la atención a esa zona. No la forzés. Respirá hacia ahí. Luego empezá a mover solo esa parte, muy lento. Dejá que el movimiento se expanda desde ahí sin dirigirlo.", autor:"Trabajo corporal, Grotowski",
+        transicion:{ pregunta:"¿Qué pasó en esa zona?", opciones:[
+          {texto:"Se abrió algo, hubo movimiento", sig:1},
+          {texto:"Sigue tensa pero la identifiqué mejor", sig:2},
+          {texto:"La tensión se corrió a otro lugar", sig:3},
+        ]}},
+      /* 1 */ { indagacion:"El movimiento apareció. Ahora llevá esa apertura a la escena — dejando que esa zona que se abrió inicie cada impulso.", ejercicio:"Trabajá la escena dejando que esa zona lidere cada movimiento. No que sea visible — que sea el origen. Cada impulso nace ahí primero.", autor:"Resonadores, Grotowski",
+        transicion:{ pregunta:"¿Cómo funcionó en la escena?", opciones:[
+          {texto:"El cuerpo se sentía más integrado", sig:4},
+          {texto:"En algunos momentos sí, en otros no", sig:4},
+          {texto:"La escena se sintió diferente aunque no sé cómo", sig:4},
+        ]}},
+      /* 2 */ { indagacion:"Identificar la tensión ya es trabajo. La tensión corporal en escena casi siempre tiene una emoción debajo — no una que actuás, sino una que el cuerpo retiene.", ejercicio:"Sin texto. Quedate quieto con la tensión durante dos minutos. No la resuelvas. Prestale atención como si fuera alguien que tiene algo para decirte. ¿Qué te dice?", autor:"Escucha corporal, Body-Mind Centering",
+        transicion:{ pregunta:"¿Qué encontraste?", opciones:[
+          {texto:"Algo concreto", sig:4},
+          {texto:"Una sensación difusa pero presente", sig:4},
+          {texto:"Nada todavía", sig:5},
+        ]}},
+      /* 3 */ { indagacion:"Cuando la tensión se corre, el cuerpo te está mostrando que el bloqueo tiene más extensión. No es un punto — es una zona.", ejercicio:"Mapeá el cuerpo entero moviéndote, no pensándolo: ¿dónde hay tensión, dónde hay soltura? Después trabajá desde las zonas sueltas hacia las tensas.", autor:"Mapeo corporal, Laban",
+        transicion:{ pregunta:"¿Qué encontraste en el mapeo?", opciones:[
+          {texto:"Zonas que no sabía que estaban tensas", sig:4},
+          {texto:"Hay más soltura de la que creía", sig:4},
+          {texto:"El cuerpo está muy cargado hoy", sig:5},
+        ]}},
+      /* 4 */ { indagacion:"Hiciste trabajo corporal real hoy. El cuerpo tarda en integrar — lo que trabajaste va a aparecer en los próximos ensayos.", ejercicio:"Antes de cerrar, sacudí el cuerpo entero durante un minuto. Soltá todo. Después quedate quieto un momento. Eso es lo que te llevás.", autor:"Cierre corporal" },
+      /* 5 */ { indagacion:"Hay días en que el cuerpo no puede más y eso también es información válida.", ejercicio:"No trabajes más hoy en la escena. Hacé algo físico simple y placentero — caminar, estirarte, agua caliente. El cuerpo necesita recuperarse antes de poder abrirse.", autor:"Cuidado del instrumento" },
+    ],
+    perdi_el_personaje: [
+      /* 0 */ { indagacion:"Perdiste al personaje porque lo estás buscando desde afuera. El personaje no es una máscara — es un conjunto de necesidades. ¿Qué necesita desesperadamente esta persona?", ejercicio:"Sin texto. Caminá por el espacio como si buscaras algo que perdiste y es urgente encontrar. No actúes la búsqueda — buscá de verdad. Después agregá el texto de la escena sin dejar de buscar.", autor:"Sistema de necesidades, Stanislavski",
+        transicion:{ pregunta:"¿Encontraste al personaje en la búsqueda?", opciones:[
+          {texto:"Sí, apareció algo", sig:1},
+          {texto:"A medias — hay algo pero no del todo", sig:2},
+          {texto:"No, el personaje sigue lejos", sig:3},
+        ]}},
+      /* 1 */ { indagacion:"La necesidad te conectó con el personaje. Ahora no lo sueltes. ¿Qué tiene esta persona que vos no tenés, o que vos tenés pero en diferente grado?", ejercicio:"Trabajá la escena encontrando los momentos donde la necesidad del personaje choca con lo que el mundo le da. Esos choques son la escena. Todo lo demás es relleno.", autor:"Conflicto de necesidades, Uta Hagen",
+        transicion:{ pregunta:"¿Los choques te dieron material?", opciones:[
+          {texto:"Sí, la escena se volvió más concreta", sig:4},
+          {texto:"En algunos momentos", sig:4},
+          {texto:"El personaje se me fue de vuelta", sig:5},
+        ]}},
+      /* 2 */ { indagacion:"Hay algo del personaje que encontraste y algo que todavía no. ¿Cuál es el momento de la escena donde el personaje se te escapa?", ejercicio:"Trabajá solo ese momento. Repetilo diez veces cambiando algo pequeño cada vez: el ritmo, la distancia, el objeto que usás.", autor:"Trabajo por repetición, Grotowski",
+        transicion:{ pregunta:"¿Qué pasó en la repetición?", opciones:[
+          {texto:"Algo se desbloqueó", sig:4},
+          {texto:"Encontré que el problema era otro", sig:4},
+          {texto:"Sigo en el mismo lugar", sig:5},
+        ]}},
+      /* 3 */ { indagacion:"El personaje está lejos porque hay algo en él que no te querés acercar. ¿Qué es lo que más te cuesta de esta persona?", ejercicio:"Trabajá desde eso que te cuesta. No trates de superarlo — habitalo. Durante diez minutos, sé el personaje en lo que más te incomoda de él.", autor:"Trabajar con la resistencia",
+        transicion:{ pregunta:"¿Pudiste habitarlo?", opciones:[
+          {texto:"Sí, aunque fue incómodo", sig:4},
+          {texto:"Un poco", sig:4},
+          {texto:"No pude acercarme todavía", sig:5},
+        ]}},
+      /* 4 */ { indagacion:"El personaje existe en el trabajo que hiciste hoy, aunque no lo sientas completo todavía. La completud viene con el tiempo y la repetición.", ejercicio:"Escribí una cosa — solo una — que descubriste del personaje hoy. No lo que ya sabías. Lo que no sabías antes.", autor:"Registro del proceso" },
+      /* 5 */ { indagacion:"Hay personajes que necesitan más tiempo de convivencia. No se encuentran en una sesión.", ejercicio:"Viví con el personaje fuera del ensayo por un día. No actúes — solo notá cuándo pensás como él, cuándo sus necesidades aparecen en vos. Anotá esos momentos.", autor:"Convivencia con el personaje, Strasberg" },
+    ],
+    presencia_escena: [
+      /* 0 */ { indagacion:"La presencia no se fabrica — aparece cuando estás realmente ahí. ¿Cuándo fue la última vez que te sentiste completamente presente en una escena?", ejercicio:"Antes de trabajar, hacé esto: tres respiraciones profundas. En cada una, dejá ir algo — un pensamiento, una preocupación, una imagen. Llegá a la escena con menos, no con más.", autor:"Vaciamiento, Peter Brook",
+        transicion:{ pregunta:"¿Llegaste más vacío a la escena?", opciones:[
+          {texto:"Sí, algo cambió", sig:1},
+          {texto:"Un poco, pero la cabeza sigue activa", sig:2},
+          {texto:"No, estoy muy cargado hoy", sig:3},
+        ]}},
+      /* 1 */ { indagacion:"Hay apertura. Ahora el trabajo es no llenarlo con interpretación. Escuchá lo que pasa en la escena — el otro actor, el espacio, el silencio — antes de responder.", ejercicio:"Trabajá la escena escuchando más de lo que hablás. Cada vez que el otro habla, antes de pensar en tu respuesta, recibí lo que dijo. Dejá que llegue. Respondé desde ahí.", autor:"Escucha activa, Sanford Meisner",
+        transicion:{ pregunta:"¿Pudiste recibir antes de responder?", opciones:[
+          {texto:"Sí, la escena se volvió más viva", sig:4},
+          {texto:"En algunos momentos", sig:4},
+          {texto:"Me anticipaba todo el tiempo", sig:5},
+        ]}},
+      /* 2 */ { indagacion:"La cabeza activa es el mayor enemigo de la presencia. No se apaga con voluntad — se cansa con acción. Dale al cuerpo algo concreto para hacer.", ejercicio:"Trabajá la escena con un objeto real que necesite atención — algo frágil, algo que pesa, algo que requiera cuidado. El objeto va a ocupar la cabeza y liberar al cuerpo.", autor:"Trabajo con objetos, Meyerhold",
+        transicion:{ pregunta:"¿El objeto ayudó?", opciones:[
+          {texto:"Sí, me sacó de la cabeza", sig:4},
+          {texto:"A medias", sig:4},
+          {texto:"Igual seguía en la cabeza", sig:3},
+        ]}},
+      /* 3 */ { indagacion:"Cuando estás muy cargado, la presencia escénica es casi imposible. El trabajo de hoy tiene que ser el cuerpo, no la escena.", ejercicio:"Caminá por el espacio durante diez minutos sin objetivo, sin destino. Solo el cuerpo moviéndose. Si aparece un pensamiento, notalo y seguí caminando. Después, si querés, probá la escena.", autor:"Deriva corporal",
+        transicion:{ pregunta:"¿Algo cambió después de caminar?", opciones:[
+          {texto:"Sí, pude probar la escena", sig:4},
+          {texto:"Me calmé pero no pude trabajar la escena", sig:4},
+          {texto:"No, el peso sigue", sig:5},
+        ]}},
+      /* 4 */ { indagacion:"La presencia es un trabajo que se construye sesión a sesión. Lo que hiciste hoy es parte de ese camino.", ejercicio:"Antes de cerrar, quedate parado en el centro del espacio un minuto en silencio. Sin hacer nada. Eso es presencia — existir sin producir.", autor:"Presencia simple, Brook" },
+      /* 5 */ { indagacion:"Hay días en que la presencia no es posible porque hay demasiado adentro. Eso también es información.", ejercicio:"Hoy el trabajo es descansar. No como derrota — como parte del entrenamiento. El instrumento necesita recuperarse.", autor:"Cuidado del instrumento" },
+    ],
+  },
+
+  /* ── PROYECTO ──────────────────────────────────────────── */
+  proyecto: {
+    no_se_que_estoy_haciendo: [
+      /* 0 */ { indagacion:"No saber qué estás haciendo puede ser el estado más honesto del proceso. ¿Qué es lo único que sabés con certeza sobre este proyecto, por más pequeño que sea?", ejercicio:"Escribí en una sola oración qué querés que alguien sienta cuando salga de ver tu trabajo. No lo que querés decir — lo que querés que sientan. Después escribí qué tenés que cambiar para que eso pase.", autor:"Intención de efecto, Tania Bruguera",
+        transicion:{ pregunta:"¿Pudiste escribir esa oración?", opciones:[
+          {texto:"Sí, aunque me costó", sig:1},
+          {texto:"Salieron varias, no una", sig:2},
+          {texto:"No sé qué quiero que sientan", sig:3},
+        ]}},
+      /* 1 */ { indagacion:"Tenés una intención. Ahora la pregunta es si lo que estás haciendo concretamente lleva hacia eso. ¿Cuál es la distancia entre la intención y el material que tenés?", ejercicio:"Mirá el material que tenés — lo que ya existe del proyecto. Marcá qué partes van hacia tu intención y qué partes se alejan. No tires nada todavía — solo marcá.", autor:"Coherencia de proyecto",
+        transicion:{ pregunta:"¿Qué encontraste al mirar el material?", opciones:[
+          {texto:"Hay más que va hacia la intención de lo que creía", sig:4},
+          {texto:"Mucho se aleja, pero ahora sé qué quitar", sig:4},
+          {texto:"El material me mostró que la intención era otra", sig:4},
+        ]}},
+      /* 2 */ { indagacion:"Varias intenciones posibles significa que el proyecto todavía no eligió. Eso no es un problema — es una decisión pendiente. ¿Cuál de esas intenciones te da más miedo elegir?", ejercicio:"Trabajá una hora con la intención que más miedo te da. No para quedarte con ella — para ver qué pasa cuando la tomás en serio.", autor:"Trabajo con la resistencia",
+        transicion:{ pregunta:"¿Qué pasó al trabajar con esa intención?", opciones:[
+          {texto:"Es más interesante de lo que pensaba", sig:4},
+          {texto:"Confirmé que no es la correcta, pero aprendí", sig:4},
+          {texto:"Se abrió una nueva posibilidad", sig:4},
+        ]}},
+      /* 3 */ { indagacion:"No saber qué querés que sientan puede ser porque todavía no sabés para quién es el proyecto. ¿A quién estás haciendo esto? ¿Quién es el espectador que tenés en la cabeza?", ejercicio:"Describí a una persona concreta — no un grupo, una persona — para quien este proyecto existe. Qué edad tiene, qué ve en el mundo, qué necesita. Puede ser imaginada.", autor:"Espectador específico, Brecht",
+        transicion:{ pregunta:"¿Pudiste imaginar a esa persona?", opciones:[
+          {texto:"Sí, y el proyecto se aclaró", sig:4},
+          {texto:"Sí, aunque no sé si es la persona correcta", sig:4},
+          {texto:"No sé para quién es todavía", sig:4},
+        ]}},
+      /* 4 */ { indagacion:"Hiciste trabajo de clarificación hoy. El proyecto sabe más que vos — tu trabajo es escucharlo.", ejercicio:"Escribí en una oración qué descubriste del proyecto hoy. No del qué hacer — del qué es. Eso es tu brújula.", autor:"Cierre reflexivo" },
+    ],
+    concepto_vago: [
+      /* 0 */ { indagacion:"El concepto es vago porque todavía no encontraste la imagen concreta que lo sostiene. ¿Qué imagen visual tiene tu proyecto? No la metáfora — la imagen real, física.", ejercicio:"Describí tu proyecto como si fuera un objeto que encontraste en la calle. Qué forma tiene, de qué material, qué peso, qué olor. Esa descripción dice más del proyecto que cualquier concepto.", autor:"Imaginario escénico, Kantor",
+        transicion:{ pregunta:"¿Encontraste una imagen?", opciones:[
+          {texto:"Sí, y es más clara que el concepto", sig:1},
+          {texto:"Vaga, pero algo hay", sig:2},
+          {texto:"No encuentro la imagen todavía", sig:3},
+        ]}},
+      /* 1 */ { indagacion:"La imagen es el centro del proyecto. Ahora: ¿qué tiene que pasar en escena para que esa imagen exista? No metafóricamente — físicamente.", ejercicio:"Listá cinco acciones concretas que podrían producir esa imagen en el espacio: qué cuerpos, qué objetos, qué luz, qué sonido.", autor:"Dramaturgia del espacio, Robert Wilson",
+        transicion:{ pregunta:"¿Las acciones te aclararon el proyecto?", opciones:[
+          {texto:"Sí, el concepto se volvió más concreto", sig:4},
+          {texto:"Algunas sí, otras no", sig:4},
+          {texto:"Las acciones me llevaron a otra imagen", sig:4},
+        ]}},
+      /* 2 */ { indagacion:"Hay algo — aunque sea vago. Las imágenes vagas se clarifican moviéndose hacia ellas, no pensándolas.", ejercicio:"Hacé algo físico con esa imagen vaga: dibujala, construí una maqueta, tomá una foto que la evoque. No para el proyecto — para vos. Para tener algo concreto que mirar.", autor:"Materialización del concepto",
+        transicion:{ pregunta:"¿La imagen se clarificó al materializarla?", opciones:[
+          {texto:"Sí, ahora la veo mejor", sig:4},
+          {texto:"Se transformó en algo diferente", sig:4},
+          {texto:"Sigue vaga pero más presente", sig:4},
+        ]}},
+      /* 3 */ { indagacion:"Cuando no hay imagen, generalmente es porque el concepto viene de la cabeza, no de la experiencia. ¿Qué experiencia personal está en el origen de este proyecto?", ejercicio:"Escribí la experiencia — no el concepto. Qué pasó, dónde, cuándo, qué sentiste. Cuanto más concreto mejor. De esa experiencia va a salir la imagen.", autor:"Origen autobiográfico, Rimini Protokoll",
+        transicion:{ pregunta:"¿Apareció algo al escribir la experiencia?", opciones:[
+          {texto:"Sí, una imagen o sensación", sig:4},
+          {texto:"Entendí mejor de qué se trata el proyecto", sig:4},
+          {texto:"Todavía no encuentro el origen", sig:4},
+        ]}},
+      /* 4 */ { indagacion:"Los proyectos necesitan tiempo para encontrar su imagen central. Lo que hiciste hoy es parte de ese proceso.", ejercicio:"Guardá todo lo que apareció hoy — aunque sea fragmentario. La imagen del proyecto está en alguno de esos fragmentos.", autor:"Archivo del proceso" },
+    ],
+    no_se_por_donde_empezar: [
+      /* 0 */ { indagacion:"No empezás porque esperás tener todo claro antes. Pero la claridad aparece haciendo, no pensando. ¿Cuál es la cosa más pequeña que podrías hacer hoy para que este proyecto exista un poco más?", ejercicio:"Hacé algo concreto en los próximos treinta minutos. No planifiques — hacé. Una escena, un objeto, una foto, un boceto, cinco líneas. Lo que sea, pero que sea real.", autor:"Pedagogía del hacer, Brecht",
+        transicion:{ pregunta:"¿Pudiste hacer algo?", opciones:[
+          {texto:"Sí, y salió más de lo que esperaba", sig:1},
+          {texto:"Hice algo pequeño", sig:1},
+          {texto:"No pude arrancar todavía", sig:2},
+        ]}},
+      /* 1 */ { indagacion:"Hay algo concreto. Ahora: ¿qué tiene que pasar después de esto que hiciste? No el proyecto entero — el próximo paso.", ejercicio:"Identificá el próximo paso concreto y hacelo hoy, en la próxima hora. No mañana. Un paso más, aunque sea pequeño.", autor:"Proceso incremental",
+        transicion:{ pregunta:"¿Pudiste dar ese segundo paso?", opciones:[
+          {texto:"Sí", sig:4},
+          {texto:"Empecé pero no terminé", sig:4},
+          {texto:"No, llegué hasta ahí por hoy", sig:4},
+        ]}},
+      /* 2 */ { indagacion:"A veces el primer paso parece demasiado grande. ¿Cuál sería el paso más ridículamente pequeño que podrías dar? Tan pequeño que sea imposible no hacerlo.", ejercicio:"Hacé ese paso ridículamente pequeño. Ahora. Puede ser escribir una palabra, doblar un papel, hacer un sonido. El tamaño no importa — que exista importa.", autor:"Punto de entrada mínimo, Fluxus",
+        transicion:{ pregunta:"¿Lo hiciste?", opciones:[
+          {texto:"Sí, y después siguió algo más", sig:4},
+          {texto:"Sí, solo eso por ahora", sig:4},
+          {texto:"No pude ni eso", sig:3},
+        ]}},
+      /* 3 */ { indagacion:"Cuando ni el paso mínimo es posible, el bloqueo no es de proyecto — es personal. Algo más grande está ocupando el espacio.", ejercicio:"Hoy el trabajo no es el proyecto. Hacé algo que te dé placer sin ninguna conexión con el trabajo. Después de eso, y solo si querés, volvé al proyecto.", autor:"Recuperación creativa, Julia Cameron",
+        transicion:{ pregunta:"¿Pudiste hacer algo placentero?", opciones:[
+          {texto:"Sí, y después pude trabajar un poco", sig:4},
+          {texto:"Sí, y eso fue suficiente por hoy", sig:4},
+          {texto:"Tampoco pude", sig:4},
+        ]}},
+      /* 4 */ { indagacion:"Hoy existió algo del proyecto que antes no existía, o entendiste mejor dónde está el obstáculo real.", ejercicio:"Escribí el próximo paso concreto. No lo hagas ahora — solo escribilo. Esa es tu entrada para la próxima sesión.", autor:"Cierre con acción pendiente" },
+    ],
+    perdi_el_norte: [
+      /* 0 */ { indagacion:"Perdiste el norte porque el proyecto creció y te alejaste de la pregunta original. ¿Por qué empezaste esto? ¿Qué te preguntabas cuando empezaste?", ejercicio:"Encontrá o escribí el primer registro que tenés de este proyecto — el primer apunte, la primera idea. Leelo. Luego escribí qué cambió y qué no. Eso que no cambió es tu norte.", autor:"Proceso de proyecto, Rimini Protokoll",
+        transicion:{ pregunta:"¿Pudiste encontrar el norte original?", opciones:[
+          {texto:"Sí, y me aclaró el camino", sig:1},
+          {texto:"El norte original ya no me convence", sig:2},
+          {texto:"No tengo registros o no recuerdo el origen", sig:3},
+        ]}},
+      /* 1 */ { indagacion:"El norte está ahí. Ahora: ¿qué parte de lo que hiciste en el camino sirve, y qué parte te alejó?", ejercicio:"Mirá el estado actual del proyecto con esa brújula recuperada. Marcá qué vale conservar y qué habría que soltar. Sin apego — con claridad.", autor:"Edición de proceso",
+        transicion:{ pregunta:"¿Pudiste distinguir qué conservar?", opciones:[
+          {texto:"Sí, el proyecto es más claro ahora", sig:4},
+          {texto:"Sí, aunque duele soltar algunas cosas", sig:4},
+          {texto:"Conservo casi todo, el problema era otro", sig:4},
+        ]}},
+      /* 2 */ { indagacion:"Si el norte original ya no te convence, el proyecto evolucionó. Eso no es pérdida — es crecimiento. ¿Cuál es la pregunta que el proyecto hace ahora, después de todo el camino?", ejercicio:"Escribí la pregunta actual del proyecto — no la original, la de ahora. Una sola pregunta. Esa es tu nuevo norte.", autor:"Reformulación de proyecto",
+        transicion:{ pregunta:"¿Pudiste formular la nueva pregunta?", opciones:[
+          {texto:"Sí, y es más interesante que la original", sig:4},
+          {texto:"Sí, aunque no sé si confiar en ella todavía", sig:4},
+          {texto:"Salieron varias, no una", sig:4},
+        ]}},
+      /* 3 */ { indagacion:"Sin registros, el origen tiene que reconstruirse. ¿Qué imagen o sensación tenés cuando pensás en el proyecto en su mejor momento?", ejercicio:"Reconstruí el origen desde la memoria: describí ese mejor momento. Qué había ahí, qué sentías, qué era posible. Eso es el norte.", autor:"Reconstrucción del origen",
+        transicion:{ pregunta:"¿Pudiste reconstruirlo?", opciones:[
+          {texto:"Sí, y me di cuenta de qué perdí en el camino", sig:4},
+          {texto:"Parcialmente", sig:4},
+          {texto:"No tengo un mejor momento claro", sig:4},
+        ]}},
+      /* 4 */ { indagacion:"Recuperar el norte es trabajo de clarificación. El proyecto sabe hacia dónde va — a veces hay que detenerse para escucharlo.", ejercicio:"Escribí en una oración el estado actual del proyecto y hacia dónde va ahora. No hacia dónde debería ir — hacia dónde va. Esa es tu brújula actualizada.", autor:"Cierre de orientación" },
+    ],
+  },
+
+  /* ── BLOQUEO ───────────────────────────────────────────── */
+  bloqueo: {
+    todo_parado: [
+      /* 0 */ { indagacion:"Cuando todo está parado, la pregunta no es cómo arrancar — es qué está pasando realmente. ¿Desde cuándo está parado? ¿Qué pasó justo antes de que se parara?", ejercicio:"No trabajes en el proyecto hoy. Hacé algo completamente distinto con las manos — cocinar, dibujar, ordenar, caminar. El bloqueo se rompe cuando dejás de mirarle la cara.", autor:"Deriva creativa, Guy Debord",
+        transicion:{ pregunta:"¿Pudiste alejarte del proyecto?", opciones:[
+          {texto:"Sí, y algo se aflojó", sig:1},
+          {texto:"Sí, pero el bloqueo sigue presente", sig:2},
+          {texto:"No pude alejarme, sigo dando vueltas", sig:3},
+        ]}},
+      /* 1 */ { indagacion:"El bloqueo se aflojó. Hay algo disponible ahora. No todo el trabajo — una cosa pequeña.", ejercicio:"Hacé una sola cosa concreta del proyecto. Solo una. Cinco minutos máximo. Después pará. El objetivo no es producir — es probar que el movimiento es posible.", autor:"Re-entrada gradual",
+        transicion:{ pregunta:"¿Pudiste hacer esa una cosa?", opciones:[
+          {texto:"Sí, y siguió más", sig:4},
+          {texto:"Sí, solo eso", sig:4},
+          {texto:"No, el bloqueo volvió al intentarlo", sig:5},
+        ]}},
+      /* 2 */ { indagacion:"El bloqueo persiste aunque te alejaste. Hay algo más profundo que la falta de energía. ¿Qué sería lo peor que podría pasar si continuás con el proyecto?", ejercicio:"Escribí los tres peores escenarios posibles si seguís. Completamente, sin suavizarlos. A veces el bloqueo protege de un miedo que conviene nombrar.", autor:"Catastrofización terapéutica",
+        transicion:{ pregunta:"¿Qué aparece en esos peores escenarios?", opciones:[
+          {texto:"Un miedo concreto que puedo trabajar", sig:4},
+          {texto:"Que los riesgos son más manejables de lo que pensaba", sig:4},
+          {texto:"Algo que necesito pensar más tiempo", sig:5},
+        ]}},
+      /* 3 */ { indagacion:"No poder alejarse del bloqueo es una señal de que hay mucha energía atrapada ahí. Esa energía puede usarse.", ejercicio:"En lugar de trabajar en el proyecto, escribí sobre el bloqueo mismo. ¿Qué forma tiene? ¿Qué color? ¿Qué textura? Describilo como si fuera un objeto. Dale nombre.", autor:"Objetivación del bloqueo",
+        transicion:{ pregunta:"¿Pudiste describir el bloqueo?", opciones:[
+          {texto:"Sí, y al nombrarlo algo cambió", sig:4},
+          {texto:"Sí, es concreto ahora", sig:4},
+          {texto:"El bloqueo es demasiado grande para nombrarlo", sig:5},
+        ]}},
+      /* 4 */ { indagacion:"Hiciste trabajo real hoy, aunque no hayas trabajado en el proyecto. Entender el bloqueo es parte del proceso.", ejercicio:"Escribí una cosa — solo una — que sabés que tenés que hacer mañana con el proyecto. Pequeña y concreta. Esa es tu próxima entrada.", autor:"Próximo paso concreto" },
+      /* 5 */ { indagacion:"Hay bloqueos que necesitan tiempo y apoyo externo para moverse. Eso no es debilidad — es reconocer lo que el proceso necesita.", ejercicio:"Hablá del proyecto con alguien hoy — un colega, un amigo, quien sea. No para que te den soluciones — para escucharte hablar. A veces eso alcanza.", autor:"Soporte externo" },
+    ],
+    miedo_a_que_sea_malo: [
+      /* 0 */ { indagacion:"El miedo a que sea malo es el miedo a que revele algo verdadero sobre vos. ¿Qué es lo peor que podría aparecer si hacés el trabajo?", ejercicio:"Hacé la versión más mala posible de lo que estás evitando hacer. Intencionalmente mala. Sin que nadie la vea. Guardala. El próximo intento va a ser mejor, lo sabés.", autor:"Ejercicio de permiso, Fluxus",
+        transicion:{ pregunta:"¿Pudiste hacer la versión mala?", opciones:[
+          {texto:"Sí, y no fue tan mala como pensaba", sig:1},
+          {texto:"Sí, fue liberador hacerla mal a propósito", sig:1},
+          {texto:"No pude — el miedo bloqueó incluso hacer algo malo", sig:2},
+        ]}},
+      /* 1 */ { indagacion:"La versión mala existe. Eso significa que el trabajo es posible. Ahora hacé la versión siguiente — no la buena, la siguiente. Un poco mejor que la mala.", ejercicio:"Tomá lo que hiciste y mejorá una sola cosa. Solo una. No todo — una. Eso es el proceso: pequeñas mejoras acumuladas, no saltos hacia la perfección.", autor:"Proceso incremental",
+        transicion:{ pregunta:"¿Pudiste mejorar esa una cosa?", opciones:[
+          {texto:"Sí, y siguió más", sig:4},
+          {texto:"Sí, aunque sigue sin gustarme", sig:4},
+          {texto:"Al intentar mejorar, el miedo volvió", sig:3},
+        ]}},
+      /* 2 */ { indagacion:"El miedo bloqueó incluso hacer algo malo a propósito. Generalmente tiene que ver con la identidad, no con el trabajo. ¿Qué dice de vos que el trabajo sea malo?", ejercicio:"Escribí lo que creés que significaría para vos que esto saliera mal. No lo que diría la gente — lo que significaría para tu propia narrativa de quién sos.", autor:"Identidad y proceso creativo",
+        transicion:{ pregunta:"¿Pudiste identificar qué está en juego?", opciones:[
+          {texto:"Sí, y es más manejable de lo que pensaba", sig:4},
+          {texto:"Sí, y es algo que necesito trabajar más profundo", sig:5},
+          {texto:"Sí, pero no sé cómo separar identidad de trabajo", sig:4},
+        ]}},
+      /* 3 */ { indagacion:"El miedo volvió cuando intentaste mejorar. El estándar interno es tan alto que hace imposible el proceso.", ejercicio:"Definí el estándar mínimo aceptable para este trabajo. No el ideal — el mínimo. ¿Qué tiene que tener para que cuente como trabajo válido? Escribilo. Ese es el bar real.", autor:"Estándar mínimo viable",
+        transicion:{ pregunta:"¿Pudiste definir el mínimo?", opciones:[
+          {texto:"Sí, y es más alcanzable de lo que pensaba", sig:4},
+          {texto:"El mínimo que escribí sigue siendo muy alto", sig:4},
+          {texto:"No puedo bajar el estándar", sig:5},
+        ]}},
+      /* 4 */ { indagacion:"El miedo al juicio es parte del proceso creativo — no desaparece, se aprende a trabajar con él.", ejercicio:"Escribí una cosa que hiciste hoy que vale, aunque sea pequeña. No lo mejor — algo que vale. Entrenarte para ver el trabajo sin solo juzgarlo es parte del oficio.", autor:"Reconocimiento del proceso" },
+      /* 5 */ { indagacion:"Hay miedos que necesitan más que ejercicios para moverse. Eso no es fracaso del proceso — es reconocer que necesitás apoyo que va más allá de este espacio.", ejercicio:"Hoy el trabajo es no trabajar. Y registrar: ¿qué emoción es la que más aparece cuando pensás en mostrar este trabajo? Solo nombrala. Eso es suficiente.", autor:"Registro emocional" },
+    ],
+    no_tengo_ideas: [
+      /* 0 */ { indagacion:"No tenés ideas porque estás esperando que lleguen solas. Las ideas no llegan — aparecen cuando estás haciendo otra cosa. ¿Cuándo fue la última vez que tuviste una idea que te sorprendió?", ejercicio:"Abrí un libro al azar. Leé la primera frase que encontrés. Escribí durante diez minutos a partir de esa frase sin importar adónde va. No es un ejercicio de escritura — es un ejercicio de soltar el control.", autor:"Escritura automática, André Breton",
+        transicion:{ pregunta:"¿Apareció algo?", opciones:[
+          {texto:"Sí, una dirección o una imagen", sig:1},
+          {texto:"Algo, aunque no sé qué es todavía", sig:1},
+          {texto:"No, sigue el vacío", sig:2},
+        ]}},
+      /* 1 */ { indagacion:"Hay algo. No lo analices todavía — seguilo. Las ideas se asustan cuando las miramos de frente demasiado pronto.", ejercicio:"Hacé diez minutos más siguiendo lo que apareció. Sin cambiar de dirección, sin juzgar. Después vas a ver qué tenés.", autor:"Momentum creativo",
+        transicion:{ pregunta:"¿Qué pasó?", opciones:[
+          {texto:"Se desarrolló en algo concreto", sig:4},
+          {texto:"Se ramificó en varias direcciones", sig:4},
+          {texto:"Se agotó rápido", sig:3},
+        ]}},
+      /* 2 */ { indagacion:"El vacío de ideas a veces es saturación — hay tanto en la cabeza que nada puede entrar. ¿Cuándo fue la última vez que te aburriste sin hacer nada?", ejercicio:"Hacé veinte minutos de nada. Sin teléfono, sin música, sin pantalla. Solo sentado o caminando despacio. El aburrimiento activa la red neuronal por defecto — ahí es donde nacen las ideas.", autor:"Default Mode Network, neurociencia creativa",
+        transicion:{ pregunta:"¿Apareció algo durante o después del nada?", opciones:[
+          {texto:"Sí, algo surgió en el vacío", sig:4},
+          {texto:"No apareció nada concreto pero me siento diferente", sig:3},
+          {texto:"No pude estar sin hacer nada", sig:3},
+        ]}},
+      /* 3 */ { indagacion:"La sequía persiste. A veces las ideas necesitan que salgas a buscarlas afuera, no adentro.", ejercicio:"Salí a caminar media hora sin destino. No busques ideas — simplemente movete. Lo que notes en el camino — algo que veas, escuches, algo que pase — anotalo. Eso es todo.", autor:"Deriva, Guy Debord",
+        transicion:{ pregunta:"¿Qué notaste en el camino?", opciones:[
+          {texto:"Algo que podría ser material", sig:4},
+          {texto:"Nada en particular, pero me moví", sig:4},
+          {texto:"Que necesito un descanso más largo del proceso", sig:4},
+        ]}},
+      /* 4 */ { indagacion:"Las ideas viven en el mundo — no en la cabeza esperando. Lo que hiciste hoy fue ir a buscarlas afuera.", ejercicio:"Guardá todo lo que apareció hoy, aunque parezca poco. La próxima vez que te sientes a trabajar, empezá desde ahí.", autor:"Archivo de lo cotidiano" },
+    ],
+    agotamiento: [
+      /* 0 */ { indagacion:"El agotamiento creativo no es falta de energía — es exceso de autoexigencia. ¿Cuánto tiempo llevás sin hacer algo sin ningún propósito?", ejercicio:"Durante los próximos dos días, trabajá solo quince minutos por sesión y paráis. No importa cuánto falta. Quince minutos y listo. El límite libera.", autor:"Trabajo acotado, gestión del proceso",
+        transicion:{ pregunta:"¿Probaste trabajar quince minutos?", opciones:[
+          {texto:"Sí, y fue suficiente", sig:1},
+          {texto:"Sí, pero quise seguir más", sig:1},
+          {texto:"No pude ni quince minutos", sig:2},
+        ]}},
+      /* 1 */ { indagacion:"Los quince minutos funcionaron. El límite da permiso para empezar porque saca la presión de tener que terminar.", ejercicio:"Hoy: otros quince minutos. Pero antes de empezar, elegí la única cosa que vas a hacer en esos quince minutos. Una cosa. No una lista — una.", autor:"Foco único",
+        transicion:{ pregunta:"¿Qué hiciste en esos quince minutos?", opciones:[
+          {texto:"Lo que me propuse", sig:4},
+          {texto:"Algo diferente pero válido", sig:4},
+          {texto:"Empecé y me fui por las ramas", sig:3},
+        ]}},
+      /* 2 */ { indagacion:"Si ni quince minutos son posibles, el agotamiento es profundo. ¿Cuándo fue la última vez que descansaste de verdad — no del trabajo, sino de la exigencia de tener que producir?", ejercicio:"Hoy no trabajes. No como postergación — como decisión consciente. El agotamiento necesita descanso antes que técnica. Hacé algo que te dé placer sin ninguna conexión con el trabajo.", autor:"Recuperación creativa",
+        transicion:{ pregunta:"¿Pudiste descansar de la exigencia?", opciones:[
+          {texto:"Sí, y me siento mejor", sig:4},
+          {texto:"Parcialmente — la culpa apareció", sig:3},
+          {texto:"No pude, la exigencia me siguió", sig:3},
+        ]}},
+      /* 3 */ { indagacion:"La exigencia te sigue incluso cuando intentás descansar. Eso es el agotamiento más profundo.", ejercicio:"Escribí una lista de cosas que te estás exigiendo con el trabajo ahora mismo. Todas. Después tachá las que podrían esperar hasta la semana que viene. Lo que no podés tachar es lo urgente real.", autor:"Revisión de exigencias",
+        transicion:{ pregunta:"¿Pudiste tachar algo?", opciones:[
+          {texto:"Sí, hay cosas que pueden esperar", sig:4},
+          {texto:"Casi todo parece urgente", sig:5},
+          {texto:"Me di cuenta de que me exijo demasiado", sig:4},
+        ]}},
+      /* 4 */ { indagacion:"El agotamiento se trabaja con límites y descanso, no con más técnica. Lo que hiciste hoy es trabajo real.", ejercicio:"Escribí el horario de la próxima semana: no cuánto vas a producir — cuándo vas a trabajar y cuándo no. Los límites de tiempo son tan importantes como el tiempo de trabajo.", autor:"Estructura sostenible" },
+      /* 5 */ { indagacion:"Cuando todo parece urgente, hay un problema de volumen que va más allá del proyecto en sí.", ejercicio:"Hoy el trabajo es hablar con alguien — un colega, un director, quien corresponda — sobre la carga. No para quejarte — para ver si algo puede redistribuirse o postergarse.", autor:"Gestión de carga" },
+    ],
+  },
+};
+
+// Estado de sesión
+let practicaArea = null;
+let practicaSecuencia = null;
+let practicaPaso = 0;
+let practicaNotas = [];
+let practicaCartaActual = null;
+
+function irPractica() { showScreen('practica'); }
+
+function iniciarPractica(area) {
+  practicaArea = area;
+  const cfgs = {
+    escritura: { pregunta:"¿Cómo está tu escritura ahora mismo?", opciones:[
+      {texto:"Estoy bloqueado con un texto específico", clave:"bloqueado_texto"},
+      {texto:"Tengo un texto que no avanza", clave:"texto_que_no_avanza"},
+      {texto:"No puedo empezar, la página en blanco me paraliza", clave:"pagina_en_blanco"},
+      {texto:"Tengo material pero no sé cómo ordenarlo", clave:"estructura_perdida"},
+    ]},
+    actuacion: { pregunta:"¿Qué está pasando en tu actuación?", opciones:[
+      {texto:"Siento que no llego, que algo no está", clave:"no_llego"},
+      {texto:"Mi cuerpo está tenso o bloqueado en escena", clave:"cuerpo_bloqueado"},
+      {texto:"Perdí la conexión con el personaje", clave:"perdi_el_personaje"},
+      {texto:"Me cuesta estar presente en escena", clave:"presencia_escena"},
+    ]},
+    proyecto: { pregunta:"¿En qué momento está tu proyecto?", opciones:[
+      {texto:"No tengo claro qué estoy haciendo", clave:"no_se_que_estoy_haciendo"},
+      {texto:"El concepto existe pero es vago", clave:"concepto_vago"},
+      {texto:"No sé por dónde empezar", clave:"no_se_por_donde_empezar"},
+      {texto:"Me perdí en el proceso", clave:"perdi_el_norte"},
+    ]},
+    bloqueo: { pregunta:"¿Cómo describirías lo que te está pasando?", opciones:[
+      {texto:"Todo está parado, no puedo avanzar", clave:"todo_parado"},
+      {texto:"Tengo miedo de que lo que haga sea malo", clave:"miedo_a_que_sea_malo"},
+      {texto:"No tengo ideas, estoy vacío", clave:"no_tengo_ideas"},
+      {texto:"Estoy agotado, sin energía para crear", clave:"agotamiento"},
+    ]},
+  };
+  const cfg = cfgs[area];
+  document.getElementById('pq-wrap').innerHTML = `
+    <p style="font-family:'Courier New',monospace;font-size:8px;letter-spacing:.38em;color:var(--whiteS);text-transform:uppercase;margin-bottom:20px;animation:ap .5s both">${AREA_LABELS[area]}</p>
+    <p style="font-family:Georgia,serif;font-style:italic;font-size:clamp(18px,5vw,22px);color:var(--white);margin-bottom:28px;line-height:1.5;animation:ap .6s both">${cfg.pregunta}</p>
+    <div style="display:flex;flex-direction:column;gap:9px">
+      ${cfg.opciones.map((op,i) => `<button class="opt-btn" style="animation:ap .5s ${i*.07}s both;font-style:italic" onclick="elegirSecuencia('${op.clave}')">${op.texto}</button>`).join('')}
+    </div>
+    <button class="nb" style="margin-top:18px" onclick="irPractica()">← cambiar área</button>`;
+  showScreen('practica-q');
+}
+
+function elegirSecuencia(clave) {
+  practicaSecuencia = SECUENCIAS[practicaArea][clave];
+  practicaPaso = 0;
+  practicaNotas = [];
+  mostrarPasoPractica();
+}
+
+function mostrarPasoPractica() {
+  const paso = practicaSecuencia[practicaPaso];
+  const col  = AREA_COL[practicaArea] || '#c4aff5';
+  const totalVisible = 4;
+  const pasoNum = Math.min(practicaPaso + 1, totalVisible);
+  practicaCartaActual = { ...paso, area: practicaArea };
+
+  document.getElementById('cp-eyebrow').textContent = `${AREA_LABELS[practicaArea]} · paso ${pasoNum} / ${totalVisible}`;
+  document.getElementById('cp-eyebrow').style.color = col + '77';
+  document.getElementById('cp-papel').innerHTML = `
+    <div class="cp-area" style="color:${col}66">${AREA_LABELS[practicaArea]}</div>
+    <div class="cp-indagacion">${paso.indagacion}</div>
+    <div class="cp-ejercicio-label">ejercicio</div>
+    <div class="cp-ejercicio">${paso.ejercicio}</div>
+    <div style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06);font-family:'Courier New',monospace;font-size:9px;color:var(--whiteS)">— ${paso.autor}</div>`;
+  document.getElementById('cp-nota').value = '';
+  document.getElementById('cp-nota').style.display = 'block';
+  document.querySelector('.registro-label').style.display = 'block';
+
+  const btnG = document.getElementById('btn-cp-guardar');
+  btnG.textContent = 'guardar en el archivo'; btnG.classList.remove('saved');
+  btnG.style.display = 'block';
+  btnG.onclick = guardarPractica;
+
+  const btnO = document.getElementById('btn-cp-otra');
+  if (paso.transicion) {
+    btnO.textContent = 'ya hice el ejercicio →';
+    btnO.onclick = mostrarTransicion;
+  } else {
+    btnO.textContent = 'terminar sesión →';
+    btnO.onclick = terminarSesion;
+  }
+  btnO.style.display = 'block';
+
+  showScreen('carta-practica');
+}
+
+function mostrarTransicion() {
+  const paso = practicaSecuencia[practicaPaso];
+  if (!paso.transicion) return;
+  // Guardar nota del paso actual
+  practicaNotas[practicaPaso] = document.getElementById('cp-nota').value;
+  const col = AREA_COL[practicaArea] || '#c4aff5';
+
+  document.getElementById('cp-eyebrow').textContent = AREA_LABELS[practicaArea];
+  document.getElementById('cp-eyebrow').style.color = col + '77';
+  document.getElementById('cp-papel').innerHTML = `
+    <div style="font-family:Georgia,serif;font-style:italic;font-size:clamp(16px,4.5vw,20px);color:var(--white);margin-bottom:24px;line-height:1.5">${paso.transicion.pregunta}</div>
+    <div style="display:flex;flex-direction:column;gap:9px">
+      ${paso.transicion.opciones.map((op,i) => `
+        <button class="opt-btn" style="animation:ap .4s ${i*.07}s both;font-style:italic"
+          onclick="elegirTransicion(${op.sig})">${op.texto}</button>
+      `).join('')}
+    </div>`;
+  document.getElementById('cp-nota').style.display = 'none';
+  document.querySelector('.registro-label').style.display = 'none';
+  document.getElementById('btn-cp-guardar').style.display = 'none';
+  document.getElementById('btn-cp-otra').style.display = 'none';
+}
+
+function elegirTransicion(sig) {
+  practicaPaso = sig;
+  mostrarPasoPractica();
+}
+
+function guardarPractica() {
+  if (!practicaCartaActual) return;
+  const nota = document.getElementById('cp-nota').value;
+  practicaNotas[practicaPaso] = nota;
+  archivo.unshift({
+    tipo: practicaArea,
+    titulo: AREA_LABELS[practicaArea],
+    contenido: practicaCartaActual.indagacion + '\n\n' + practicaCartaActual.ejercicio,
+    nota, origen: 'practica',
+    ts: new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'}),
+    id: Math.random()
+  });
+  const btn = document.getElementById('btn-cp-guardar');
+  btn.textContent = 'guardado ·'; btn.classList.add('saved');
+  actualizarArchivoNav();
+}
+
+function terminarSesion() {
+  practicaNotas[practicaPaso] = document.getElementById('cp-nota').value;
+  // Construir resumen de la sesión completa
+  const pasosTrabajados = practicaSecuencia
+    .map((p, i) => practicaNotas[i] !== undefined ? { paso: i+1, indagacion: p.indagacion, nota: practicaNotas[i] } : null)
+    .filter(Boolean);
+  const contenido = pasosTrabajados.map(p => `[Paso ${p.paso}] ${p.indagacion}`).join('\n\n');
+  const nota = pasosTrabajados.map(p => p.nota).filter(s => s.trim()).join('\n\n---\n\n');
+  archivo.unshift({
+    tipo: practicaArea,
+    titulo: `Sesión — ${AREA_LABELS[practicaArea]}`,
+    contenido, nota, origen: 'practica',
+    ts: new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'}),
+    id: Math.random()
+  });
+  actualizarArchivoNav();
+  // Mostrar pantalla de cierre
+  const col = AREA_COL[practicaArea] || '#c4aff5';
+  document.getElementById('cp-eyebrow').textContent = AREA_LABELS[practicaArea];
+  document.getElementById('cp-eyebrow').style.color = col + '77';
+  document.getElementById('cp-papel').innerHTML = `
+    <div style="text-align:center;padding:24px 0">
+      <div style="font-family:'Courier New',monospace;font-size:10px;letter-spacing:.3em;color:var(--whiteS);margin-bottom:20px">SESIÓN GUARDADA</div>
+      <div style="font-family:Georgia,serif;font-style:italic;font-size:18px;color:var(--white);line-height:1.6">
+        El trabajo de hoy está en el archivo.
+      </div>
+    </div>`;
+  document.getElementById('cp-nota').style.display = 'none';
+  document.querySelector('.registro-label').style.display = 'none';
+  document.getElementById('btn-cp-guardar').style.display = 'none';
+  const btnO = document.getElementById('btn-cp-otra');
+  btnO.textContent = 'nueva sesión →';
+  btnO.onclick = () => irPractica();
+  btnO.style.display = 'block';
+}
+
+function otraCartaPractica() { irPractica(); }
+
+// ═══════════════════════════════════════════════════════════
 // SOBRE — render HTML
 // ═══════════════════════════════════════════════════════════
+
 function renderSobreCerrado(carta, clickFn) {
   const col = TIPO_META[carta.tipo]?.color || '#c4aff5';
   const label = TIPO_META[carta.tipo]?.label || '';
@@ -628,7 +1458,7 @@ function renderSobreCerrado(carta, clickFn) {
       <div class="sobre-label" style="color:${col}66">${label}</div>
       <div class="sobre-blur">${carta.contenido.slice(0,85)}</div>
     </div>
-    <p class="sobre-tap">tocá para abrir</p>
+    <p class="sobre-tap">toc\u00e1 para abrir</p>
   </div>`;
 }
 
@@ -647,14 +1477,14 @@ function renderSobreAbierto(carta) {
       ${lineas}
       <div class="papel-titulo" style="color:${col}66">${carta.titulo}</div>
       <p class="papel-cuerpo" style="${isNar?'font-style:italic;line-height:1.92':'line-height:1.78'}">${carta.contenido}</p>
-      <div class="papel-autor">— ${carta.autor}</div>
+      <div class="papel-autor">\u2014 ${carta.autor}</div>
     </div>
   </div>`;
 }
 
-// ═══════════════════════════════════════════════════════════
-// PROYECCIÓN
-// ═══════════════════════════════════════════════════════════
+// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550
+// PROYECCI\u00d3N
+// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550
 function irProyeccion() {
   proyCartaActual = rnd(TODAS);
   document.getElementById('proy-sobre').innerHTML = renderSobreCerrado(proyCartaActual, 'abrirProyCarta()');
@@ -674,16 +1504,16 @@ function siguienteCarta() {
   document.getElementById('btn-siguiente').style.display = 'none';
 }
 
-// ═══════════════════════════════════════════════════════════
+// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550
 // ARCHIVO
-// ═══════════════════════════════════════════════════════════
+// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550
 function irArchivo() {
   const lista = document.getElementById('archivo-lista');
   lista.innerHTML = '';
   if (archivo.length === 0) {
     lista.innerHTML = `<div id="archivo-empty">
       <div id="ld" style="margin:0 auto 24px;width:8px;height:8px;border-radius:50%;background:#f5f0ec;animation:glow 2.4s ease infinite,bob 5s ease infinite"></div>
-      <p>Todavía no guardaste nada.<br>El archivo espera.</p>
+      <p>Todav\u00eda no guardaste nada.<br>El archivo espera.</p>
     </div>`;
   } else {
     archivo.forEach((item, i) => {
@@ -704,9 +1534,9 @@ function irArchivo() {
   showScreen('archivo');
 }
 
-// ═══════════════════════════════════════════════════════════
+// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550
 // BOSQUE
-// ═══════════════════════════════════════════════════════════
+// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550
 let bosqueRaf = null;
 let bosqueState = null;
 let bosqueKeys = {};
@@ -902,7 +1732,7 @@ function initBosque() {
     pg.addColorStop(0,"#fff"); pg.addColorStop(.4,"#f0e8d8"); pg.addColorStop(1,"transparent");
     ctx.fillStyle=pg; ctx.beginPath(); ctx.arc(s.p.x,s.p.y,9,0,Math.PI*2); ctx.fill(); ctx.shadowBlur=0;
 
-    ctx.font="10px monospace"; ctx.fillStyle="rgba(240,210,100,.45)"; ctx.fillText(`◈ ${s.total}`,10,17);
+    ctx.font="10px monospace"; ctx.fillStyle="rgba(240,210,100,.45)"; ctx.fillText(`\u25c8 ${s.total}`,10,17);
 
     bosqueRaf = requestAnimationFrame(loop);
   };
@@ -910,7 +1740,7 @@ function initBosque() {
   bosqueRaf = requestAnimationFrame(loop);
 }
 
-// ── Joystick (pointer events) ──
+// \u2500\u2500 Joystick (pointer events) \u2500\u2500
 (function() {
   const base = document.getElementById('joystick-base');
   const knob = document.getElementById('joystick-knob');
@@ -938,191 +1768,14 @@ function initBosque() {
   base.addEventListener('pointercancel',e => { if(e.pointerId!==ptId)return; stop(); });
 })();
 
-// ── Keyboard ──
+// \u2500\u2500 Keyboard \u2500\u2500
 window.addEventListener('keydown', e => { bosqueKeys[e.key]=true; });
 window.addEventListener('keyup',   e => { bosqueKeys[e.key]=false; });
 
-// ═══════════════════════════════════════════════════════════
-// MI PRÁCTICA
-// ═══════════════════════════════════════════════════════════
+// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550
+// INIT
+// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550
 
-const AREAS = {
-  escritura: {
-    label: "ESCRITURA · DRAMATURGIA",
-    diagnostica: "Antes de empezar, contame: ¿en qué punto estás con tu escritura ahora mismo? ¿Estás en medio de algo, trabado en algo puntual, o todavía no encontraste el punto de entrada?",
-    sistema: `Sos un tutor de artes escénicas y escritura dramática, formado en las tradiciones de Grotowski, Fluxus, el teatro posdramático y la dramaturgia contemporánea latinoamericana. Tu rol es acompañar al alumno en su práctica personal de escritura.
-
-Tu forma de trabajo:
-- Hacés UNA pregunta a la vez, nunca múltiples
-- Escuchás antes de proponer — primero entendés el estado real del alumno
-- Cuando ofrecés ejercicios o técnicas, son concretos y acotados, no teóricos
-- Tu tono es cálido pero preciso, como un tutor en una sesión uno a uno
-- Si el alumno está bloqueado, no lo forzás: buscás el costado por donde se puede entrar
-- Usás referencias de la tradición (Beckett, Müller, Gambaro, Pavlovsky, Spregelburd) cuando iluminan algo, no para mostrar erudición
-- Siempre orientado a que el alumno pueda hacer algo concreto después de la conversación
-- Respondés en español rioplatense, con vos/te/tu
-
-Nunca des una lista de opciones ni respondas con bullets. Conversá.`
-  },
-  actuacion: {
-    label: "ACTUACIÓN · PRESENCIA",
-    diagnostica: "Contame: ¿qué estás trabajando ahora en tu actuación? ¿Hay algo específico que no te cierra, o es algo más difuso — una sensación de que algo no está llegando?",
-    sistema: `Sos un tutor de actuación con formación en Stanislavski, Grotowski, el método de las acciones físicas y técnicas contemporáneas de presencia escénica. Acompañás al alumno en su proceso personal de actuación.
-
-Tu forma de trabajo:
-- Hacés UNA pregunta a la vez, siempre
-- Primero diagnosticás: querés entender qué está pasando en el cuerpo, en la escena, en la relación con el texto o el espacio
-- Ofrecés ejercicios físicos o de conciencia corporal cuando son la respuesta correcta — concretos, realizables en el momento o en el próximo ensayo
-- Sabés que los bloqueos de actuación casi siempre tienen que ver con control, miedo al juicio o desconexión del impulso — trabajás desde ahí sin nombrar el diagnóstico directamente
-- Tu tono: directo, cálido, como un maestro en el estudio, no en el aula
-- Respondés en español rioplatense
-
-Nunca des listas ni bullets. Conversá uno a uno.`
-  },
-  proyecto: {
-    label: "PROYECTO ARTÍSTICO",
-    diagnostica: "Para arrancar: ¿en qué momento del proceso está tu proyecto? ¿Está en gestación, en desarrollo, estancado, o en un punto de decisión sobre hacia dónde ir?",
-    sistema: `Sos un tutor de procesos creativos y desarrollo de proyectos escénicos. Tenés formación en dramaturgia, dirección teatral y pensamiento artístico contemporáneo. Acompañás al alumno a clarificar, desarrollar y desbloquear su proyecto artístico propio.
-
-Tu forma de trabajo:
-- Una pregunta a la vez, siempre
-- Ayudás al alumno a articular lo que ya sabe pero no puede decir todavía — escuchás entre líneas
-- Cuando algo está vago o confuso, no lo corregís: hacés preguntas que ayuden al alumno a encontrar su propia claridad
-- Ofrecés herramientas concretas: formas de estructurar una idea, de escribir una propuesta, de tomar una decisión entre opciones
-- Conocés el campo: Tania Bruguera, Rimini Protokoll, El Periférico de Objetos, Forced Entertainment — los usás como espejo cuando ayudan
-- Respondés en español rioplatense
-
-Sin listas ni bullets. Diálogo real.`
-  },
-  bloqueo: {
-    label: "BLOQUEO · ESTANCAMIENTO",
-    diagnostica: "Antes de cualquier otra cosa: ¿podés describir el bloqueo? No el resultado — eso ya lo sé, que algo no avanza. Sino la textura: ¿qué pasa exactamente cuando intentás trabajar y no podés?",
-    sistema: `Sos un tutor de artes escénicas especializado en acompañar a artistas en procesos de bloqueo creativo, estancamiento o pérdida de dirección. Tu enfoque combina técnicas del teatro físico, la dramaterapia, el pensamiento creativo y la pedagogía artística.
-
-Tu forma de trabajo:
-- Una pregunta a la vez — siempre. El bloqueo no se resuelve con información, se resuelve con escucha
-- No apurás el proceso ni normalizás de más ("es normal bloquearse") — tratás cada situación como única
-- Buscás entender si el bloqueo es de origen técnico, emocional, conceptual o de contexto — sin decírselo al alumno directamente
-- Propós ejercicios de entrada lateral: escritura automática, acciones físicas mínimas, cambio de escala o soporte
-- Sos paciente. Si el alumno da vueltas, seguís escuchando
-- Tu tono: presente, sin ansiedad, como alguien que tiene todo el tiempo del mundo
-- Respondés en español rioplatense
-
-Sin listas. Sin diagnósticos directos. Acompañar.`
-  }
-};
-
-let chatArea = null;
-let chatHistory = [];
-let chatCargando = false;
-
-function irPractica() {
-  showScreen('practica');
-  document.getElementById('screen-chat').classList.add('hidden');
-}
-
-function salirChat() {
-  document.getElementById('screen-chat').classList.add('hidden');
-  irPractica();
-}
-
-function iniciarChat(area) {
-  chatArea = area;
-  chatHistory = [];
-  chatCargando = false;
-
-  const cfg = AREAS[area];
-  document.getElementById('chat-area-label').textContent = cfg.label;
-  document.getElementById('chat-msgs').innerHTML = '';
-  document.getElementById('chat-input').value = '';
-  document.getElementById('screen-chat').classList.remove('hidden');
-  document.getElementById('screen-chat').style.display = 'flex';
-
-  // Mensaje diagnóstico inicial de Claude
-  agregarMensaje('claude', cfg.diagnostica);
-  chatHistory.push({ role: 'assistant', content: cfg.diagnostica });
-  window.scrollTo(0,0);
-}
-
-function autoResize(el) {
-  el.style.height = 'auto';
-  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
-}
-
-function agregarMensaje(rol, texto) {
-  const msgs = document.getElementById('chat-msgs');
-  const div = document.createElement('div');
-  div.className = `msg msg-${rol}`;
-  div.innerHTML = `<div class="msg-bubble">${texto.replace(/\n/g,'<br>')}</div>`;
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-  return div;
-}
-
-function agregarTyping() {
-  const msgs = document.getElementById('chat-msgs');
-  const div = document.createElement('div');
-  div.className = 'msg msg-claude msg-typing';
-  div.id = 'typing-indicator';
-  div.innerHTML = `<div class="msg-bubble"><span class="dot">·</span><span class="dot">·</span><span class="dot">·</span></div>`;
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-}
-
-function quitarTyping() {
-  const el = document.getElementById('typing-indicator');
-  if (el) el.remove();
-}
-
-async function enviarMensaje() {
-  if (chatCargando) return;
-  const input = document.getElementById('chat-input');
-  const texto = input.value.trim();
-  if (!texto) return;
-
-  input.value = '';
-  input.style.height = 'auto';
-  document.getElementById('btn-send').disabled = true;
-  chatCargando = true;
-
-  agregarMensaje('user', texto);
-  chatHistory.push({ role: 'user', content: texto });
-
-  agregarTyping();
-
-  try {
-    const cfg = AREAS[chatArea];
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: cfg.sistema,
-        messages: chatHistory,
-      })
-    });
-
-    const data = await resp.json();
-    quitarTyping();
-
-    const respTexto = data.content
-      ? data.content.filter(b => b.type === 'text').map(b => b.text).join('\n')
-      : 'Algo salió mal. ¿Podés intentar de nuevo?';
-
-    agregarMensaje('claude', respTexto);
-    chatHistory.push({ role: 'assistant', content: respTexto });
-
-  } catch(e) {
-    quitarTyping();
-    agregarMensaje('claude', 'Hubo un problema de conexión. ¿Tenés internet? Intentá de nuevo.');
-  }
-
-  chatCargando = false;
-  document.getElementById('btn-send').disabled = false;
-}
-
-// ── Service Worker (PWA offline) ──
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('sw.js').catch(() => {});
